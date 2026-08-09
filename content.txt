@@ -12,6 +12,26 @@ CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a
 CALENDAR_ICS_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.ics
 MUSIC_VOLUME: 0.10
 
+# PROSPECTIVE STUDENT INTEREST PAGE
+# Use only eligibility language approved by Project Rebound leadership.
+INTEREST_KICKER: Take the first step
+INTEREST_HEADLINE: Interested in Project Rebound?
+INTEREST_BODY: Tell us about your educational goals. Our team will follow up, answer questions, and help you understand your next steps.
+ELIGIBILITY_TEXT: Current eligibility criteria are confirmed by Project Rebound staff. If you believe the program may fit your experience, submit the form or contact our team.
+INTEREST_CTA: Complete the interest form
+INTEREST_FORM_URL: https://csusb.az1.qualtrics.com/jfe/form/SV_cUCioDDWAUXClnM
+INTEREST_DISCLAIMER: Submitting this form is not an admissions decision or a guarantee of program eligibility.
+
+# VOLUNTEER PAGE
+# Leave VOLUNTEER_FORM_URL blank until an approved public form is available.
+VOLUNTEER_KICKER: Give your time · Share your strengths
+VOLUNTEER_HEADLINE: Volunteer with Project Rebound
+VOLUNTEER_BODY: Help strengthen a community where Rebound Scholars are seen, supported, and connected to opportunity.
+VOLUNTEER_AUDIENCE: CSUSB students, faculty, staff, alumni, community members, and approved partners are welcome to inquire.
+VOLUNTEER_CTA: Express your interest
+VOLUNTEER_FORM_URL:
+VOLUNTEER_DISCLAIMER: Submitting an interest form does not guarantee placement. Volunteers may be subject to university requirements, training, and approval.
+
 WEEK_RANGE: This week at the center
 
 # For each date badge, use a short month/day label such as AUG and 17.
