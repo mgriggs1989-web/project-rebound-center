@@ -74,6 +74,14 @@ The webpage crops photographs to a landscape frame. Images around 1600 × 1200 p
 - `index.html` — display design and functionality. Do not edit unless changing the layout.
 - `images/` — approved public display photographs.
 
+## Project Rebound visual standards
+
+- Use Coyote Blue (Pantone 3005 C), lighter blue, white, deep navy, and black.
+- Do not introduce gold, yellow, orange, or unrelated university-style accent colors.
+- Favor Project Rebound themes: education, transformation, belonging, community, open pathways, broken barriers, graduation, books, and the San Bernardino mountains.
+- Use authentic, approved Project Rebound photographs rather than generic stock imagery.
+- Keep language dignified, aspirational, readable, and centered on students' strengths.
+
 ## If an update does not appear
 
 1. Wait up to 10 minutes for GitHub Pages to deploy.
