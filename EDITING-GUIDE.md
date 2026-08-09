@@ -6,7 +6,7 @@ This guide explains how Project Rebound staff can update the center television d
 
 | What you want to change | File to edit |
 |---|---|
-| Hours, schedule, workshops, deadlines, ticker, contact information, or student spotlight | `content.txt` |
+| Hours, schedule, workshops, deadlines, calendar link, ticker, contact information, or student spotlight | `content.txt` |
 | Cover logo, welcome photo, or student photograph | Upload to `images/`, then edit `content.txt` |
 | Wording built permanently into a screen | `index.html` |
 | Colors, fonts, sizes, cards, spacing, or visual design | `styles.css` |
@@ -192,15 +192,16 @@ Never include a student ID, personal phone number, private email address, superv
 
 ### `index.html`
 
-This file contains the structure of the seven television screens:
+This file contains the structure of the eight television screens:
 
 1. Project Rebound cover
 2. Welcome
 3. This Week
-4. Workshops
-5. Support
-6. Rebound Scholar Spotlight
-7. Start Here
+4. Public Project Rebound Calendar
+5. Workshops
+6. Support
+7. Rebound Scholar Spotlight
+8. Start Here
 
 Edit this file only when adding, removing, or restructuring a screen.
 
