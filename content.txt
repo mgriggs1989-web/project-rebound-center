@@ -9,6 +9,7 @@ EMAIL: ProjectRebound@csusb.edu
 SOCIAL: @csusbprojectrebound
 STAFF_NAMES: Michael or Sofia
 CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.html
+CALENDAR_ICS_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.ics
 
 WEEK_RANGE: This week at the center
 
