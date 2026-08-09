@@ -66,8 +66,14 @@ def main():
             continue
         output.append({"title": event.get("title", "Project Rebound event"), "location": event.get("location", ""), "start": start.isoformat(), "end": end.isoformat(), "all_day": bool(event.get("all_day"))})
     output.sort(key=lambda item: item["start"])
-    payload = {"generated_at": now.isoformat(), "events": output[:8]}
-    (ROOT / "calendar-events.json").write_text(json.dumps(payload, indent=2) + "\n")
+    event_file = ROOT / "calendar-events.json"
+    upcoming = output[:8]
+    if event_file.exists():
+        existing = json.loads(event_file.read_text())
+        if existing.get("events") == upcoming:
+            return
+    payload = {"generated_at": now.isoformat(), "events": upcoming}
+    event_file.write_text(json.dumps(payload, indent=2) + "\n")
 
 if __name__ == "__main__":
     main()
