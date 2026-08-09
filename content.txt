@@ -12,6 +12,11 @@ CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a
 CALENDAR_ICS_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.ics
 MUSIC_VOLUME: 0.10
 
+# PROJECT REBOUND JUSTICE LAB PAGE
+JUSTICE_LAB_HEADLINE: Your experience can shape what the world knows.
+JUSTICE_LAB_BODY: The Project Rebound Justice Lab is an active learning and research space where justice-impacted students gain technology skills, receive mentorship, and help produce research that benefits our communities.
+JUSTICE_LAB_CTA: Attend a workshop, explore a research project, share your expertise, or ask about becoming a peer research leader.
+
 # PROSPECTIVE STUDENT INTEREST PAGE
 # Use only eligibility language approved by Project Rebound leadership.
 INTEREST_KICKER: Take the first step
