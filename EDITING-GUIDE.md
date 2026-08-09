@@ -7,7 +7,7 @@ This guide explains how Project Rebound staff can update the center television d
 | What you want to change | File to edit |
 |---|---|
 | Hours, schedule, workshops, deadlines, ticker, contact information, or student spotlight | `content.txt` |
-| Welcome or student photograph | Upload to `images/`, then edit `content.txt` |
+| Cover logo, welcome photo, or student photograph | Upload to `images/`, then edit `content.txt` |
 | Wording built permanently into a screen | `index.html` |
 | Colors, fonts, sizes, cards, spacing, or visual design | `styles.css` |
 | Slide timing, automatic refresh, clock, or content-loading behavior | `app.js` |
@@ -135,7 +135,7 @@ TICKER4: You belong here. Your education and your future matter.
 
 Only upload photographs approved for public display.
 
-The two photographs currently shown are temporary Pexels stock examples. The people pictured are not Project Rebound students. Their source links are documented in `images/README.md`.
+The cover uses the official Project Rebound logo hosted by CSUSB. The other two photographs are temporary Pexels stock examples. The people pictured are not Project Rebound students. Their source links are documented in `images/README.md`.
 
 ### Upload the file
 
@@ -150,6 +150,7 @@ The two photographs currently shown are temporary Pexels stock examples. The peo
 Open `content.txt` and update:
 
 ```text
+COVER_LOGO: images/project-rebound-logo.jpg
 WELCOME_PHOTO: images/welcome-fall-2026.jpg
 SPOTLIGHT_PHOTO: images/student-name.jpg
 ```
@@ -191,14 +192,15 @@ Never include a student ID, personal phone number, private email address, superv
 
 ### `index.html`
 
-This file contains the structure of the six television screens:
+This file contains the structure of the seven television screens:
 
-1. Welcome
-2. This Week
-3. Workshops
-4. Support
-5. Rebound Scholar Spotlight
-6. Start Here
+1. Project Rebound cover
+2. Welcome
+3. This Week
+4. Workshops
+5. Support
+6. Rebound Scholar Spotlight
+7. Start Here
 
 Edit this file only when adding, removing, or restructuring a screen.
 
