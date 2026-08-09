@@ -1,211 +1,119 @@
-# Project Rebound Center Display: Editing Tutorial
+# Project Rebound Center Display: Staff Editing Guide
 
-This guide explains how Project Rebound staff can update the center television display without programming experience.
+The center display is designed so routine updates can be completed without editing HTML, CSS, or JavaScript. Staff should normally edit only `content.txt`, the public Outlook calendar, or the `gallery` folder.
 
 ## Quick reference
 
-| What you want to change | File to edit |
+| Update | Where to make it |
 |---|---|
-| Hours, schedule, workshops, deadlines, calendar link, ticker, contact information, or student spotlight | `content.txt` |
-| Background-music volume | `content.txt` |
-| Playlist tracks, artists, sources, and licenses | `music-playlist.json` and `MUSIC-CREDITS.md` |
-| Cover logo, welcome photo, or student photograph | Upload to `images/`, then edit `content.txt` |
-| Rotating Community Gallery photographs | Upload approved images to `gallery/` |
-| Wording built permanently into a screen | `index.html` |
-| Colors, fonts, sizes, cards, spacing, or visual design | `styles.css` |
-| Slide timing, automatic refresh, clock, or content-loading behavior | `app.js` |
+| Hours, contact information, weekly schedule, deadlines, workshops, ticker, spotlight, interest wording, eligibility wording, and volunteer wording | `content.txt` |
+| Prospective-student interest-form link | `INTEREST_FORM_URL` in `content.txt` |
+| Volunteer-form link | `VOLUNTEER_FORM_URL` in `content.txt` |
+| Upcoming events | Public Project Rebound Outlook calendar |
+| Community Gallery photographs | `gallery/` folder |
+| Welcome and spotlight photographs | Upload to `images/`, then update `content.txt` |
+| Music volume | `MUSIC_VOLUME` in `content.txt` |
+| Playlist tracks and licenses | `music-playlist.json` and `MUSIC-CREDITS.md` |
 
-For routine updates, staff should edit only `content.txt`.
-
-The Community Gallery is the exception: staff can add or remove approved photographs directly in the `gallery` folder. The display discovers gallery images automatically and checks the folder every five minutes.
-
-The Upcoming Events screen reads the public Outlook ICS feed listed as `CALENDAR_ICS_URL`. GitHub checks the feed every 5 minutes and updates `calendar-events.json` automatically. The display also checks the generated event data every 5 minutes. Staff should add and edit events in Outlook, not in `calendar-events.json`.
-
-Background music uses the multi-artist playlist in `music-playlist.json`. It shuffles, advances automatically, and keeps playing while the screens rotate. `MUSIC_VOLUME` in `content.txt` uses a value from `0.00` to `1.00`; the recommended center setting is `0.10`. The on-screen Music button pauses or resumes playback. Keep `MUSIC-CREDITS.md` accurate whenever a track is changed.
-
----
-
-## Part 1: Update the schedule or announcements
-
-### Step 1: Open the content file
+## Edit `content.txt`
 
 1. Open the `project-rebound-center` repository.
 2. Select `content.txt`.
 3. Click the pencil icon labeled **Edit this file**.
+4. Change only the text after the colon.
+5. Select **Commit changes** and commit directly to `main`.
 
-Direct link: [Open content.txt](content.txt)
-
-### Step 2: Change the text
-
-Each editable item follows this pattern:
+Every editable line follows this format:
 
 ```text
 LABEL: Text shown on the television
 ```
 
-Change only the wording after the colon. Do not change or delete the label.
+Do not change or delete the label on the left.
 
-Example:
+## Prospective-student interest page
+
+These fields control the separate “Interested in Project Rebound?” screen:
 
 ```text
-TUE: Schedule updates coming soon
+INTEREST_KICKER: Take the first step
+INTEREST_HEADLINE: Interested in Project Rebound?
+INTEREST_BODY: Tell us about your educational goals.
+ELIGIBILITY_TEXT: Insert only eligibility language approved by Project Rebound leadership.
+INTEREST_CTA: Complete the interest form
+INTEREST_FORM_URL: https://your-approved-form-address
+INTEREST_DISCLAIMER: Submitting this form is not an admissions decision or a guarantee of program eligibility.
 ```
 
-Change it to:
+The current `INTEREST_FORM_URL` points to the existing Project Rebound student questionnaire. Replace the complete URL when an approved interest form changes.
+
+Do not invent or infer eligibility rules. Use only language approved by Project Rebound leadership. If criteria are under review, use a neutral direction to contact staff rather than publishing unconfirmed requirements.
+
+## Volunteer page
+
+These fields control the separate volunteer screen:
 
 ```text
-TUE: FAFSA workshop · 2:00 p.m. · SMSU South 116
+VOLUNTEER_KICKER: Give your time · Share your strengths
+VOLUNTEER_HEADLINE: Volunteer with Project Rebound
+VOLUNTEER_BODY: Help strengthen a community where Rebound Scholars are seen, supported, and connected to opportunity.
+VOLUNTEER_AUDIENCE: CSUSB students, faculty, staff, alumni, community members, and approved partners are welcome to inquire.
+VOLUNTEER_CTA: Express your interest
+VOLUNTEER_FORM_URL:
+VOLUNTEER_DISCLAIMER: Submitting an interest form does not guarantee placement.
 ```
 
-### Step 3: Commit the update
+Until an approved public volunteer form exists, leave `VOLUNTEER_FORM_URL` blank. The screen will show “Form link coming soon” and will not display a broken QR code.
 
-1. Click **Commit changes**.
-2. Enter a short description, such as `Update weekly schedule`.
-3. Select **Commit directly to the main branch**.
-4. Click **Commit changes** again.
+When the form is ready:
 
-GitHub Pages will normally update within several minutes. The display checks `content.txt` and the generated calendar data every 5 minutes without restarting the music.
+1. Paste the complete public HTTPS address after `VOLUNTEER_FORM_URL:`.
+2. Commit the change to `main`.
+3. Wait several minutes for GitHub Pages.
+4. Open the live display and scan the QR code with a phone that is not logged into a CSUSB administrator account.
+5. Confirm that the form opens for the intended public audience.
 
----
+## Verify either form QR code
 
-## Part 2: Update the weekly date badges
+After changing a form URL:
 
-Each day has three editable lines:
+1. Open the live display.
+2. Navigate to the interest or volunteer screen using the dots or arrow keys.
+3. Scan the QR code from several feet away.
+4. Confirm that it opens the correct public form.
+5. Complete a test submission if appropriate.
+
+If a URL is blank or invalid, the webpage intentionally hides the QR code and button.
+
+## Weekly schedule and announcements
+
+Update the weekly heading and each date badge:
 
 ```text
+WEEK_RANGE: Week of August 17
 MON_MONTH: AUG
 MON_DATE: 17
 MON: Study hall · 10:00 a.m.–2:00 p.m.
 ```
 
-- `MON_MONTH` is the small text at the top of the badge.
-- `MON_DATE` is the large number.
-- `MON` is the activity description.
+Repeat the pattern for Tuesday, Wednesday, and Thursday. Keep descriptions short enough to read across the center.
 
-Repeat the same pattern for Tuesday, Wednesday, and Thursday.
+Update reminders through `DEADLINE1`, `DEADLINE2`, and `DEADLINE3`. Update workshops through the `WS1`, `WS2`, and `WS3` fields.
 
-Update this line each week:
+## Outlook events
 
-```text
-WEEK_RANGE: Week of August 17
-```
+The Upcoming Events screen reads the public Outlook calendar feed listed as `CALENDAR_ICS_URL`. Add or edit events in Outlook—not in `calendar-events.json`.
 
----
+The GitHub workflow checks the Outlook feed and publishes up to eight upcoming events. The display checks the generated event data every five minutes. If events do not appear, open the repository’s **Actions** tab, select **Update public calendar events**, and confirm that the latest run has a green check.
 
-## Part 3: Update workshops and deadlines
+## Community Gallery photographs
 
-Each workshop has three lines:
-
-```text
-WS1_WHEN: August 18 · 2:00 p.m. · SMSU South 116
-WS1_NAME: Filing your FAFSA
-WS1_NOTE: Bring your documents and leave with your application submitted.
-```
-
-Use `WS2` and `WS3` for the other two workshop cards.
-
-The “Don’t Miss” panel uses:
-
-```text
-DEADLINE1: Fall classes begin August 24
-DEADLINE2: Census deadline September 21
-DEADLINE3: Complete your FAFSA as early as possible
-```
-
-Keep each item short enough to read from across the center.
-
----
-
-## Part 4: Update contact information and ticker messages
-
-Contact information appears near the welcome and “Start Here” screens:
-
-```text
-HOURS: Ask staff for current center hours
-LOCATION: SMSU South 116
-PHONE: (909) 537-4351
-EMAIL: ProjectRebound@csusb.edu
-SOCIAL: @csusbprojectrebound
-STAFF_NAMES: Michael or Sofia
-```
-
-The four ticker messages rotate independently at the bottom:
-
-```text
-TICKER1: Growth. Resilience. Achievement. Building futures together.
-TICKER2: Walk-ins are welcome—come in and meet the team.
-TICKER3: Ask staff about food, transportation, financial aid, or emergency support.
-TICKER4: You belong here. Your education and your future matter.
-```
-
----
-
-## Part 5: Add or replace a photograph
-
-Only upload photographs approved for public display.
-
-The cover uses the official Project Rebound logo hosted by CSUSB. The other two photographs are temporary Pexels stock examples. The people pictured are not Project Rebound students. Their source links are documented in `images/README.md`.
-
-### Upload the file
-
-1. Open the `images` folder.
+1. Open the repository’s `gallery` folder.
 2. Select **Add file → Upload files**.
-3. Choose the image.
-4. Use a short filename without spaces, such as `welcome-fall-2026.jpg`.
-5. Commit the image directly to `main`.
+3. Upload approved JPG, JPEG, PNG, WebP, or GIF images.
+4. Commit directly to `main`.
 
-### Connect the photograph to the display
-
-Open `content.txt` and update:
-
-```text
-COVER_LOGO: images/project-rebound-logo.jpg
-WELCOME_PHOTO: images/welcome-fall-2026.jpg
-SPOTLIGHT_PHOTO: images/student-name.jpg
-```
-
-Replace the entire web address after `WELCOME_PHOTO:` or `SPOTLIGHT_PHOTO:`. Do not leave the old stock-photo URL on the same line.
-
-Leave either line blank to show the designed Project Rebound placeholder.
-
-Recommended:
-
-- JPG, PNG, or WebP
-- At least 1600 × 1200 pixels
-- Landscape or moderately wide composition
-- Clear subject with room around faces
-- Authentic Project Rebound photographs rather than stock images
-
----
-
-## Part 6: Create a student spotlight
-
-Obtain written permission before publishing identifiable student information.
-
-Edit:
-
-```text
-SPOTLIGHT_QUOTE: Education gave me a community and a future I could see for myself.
-SPOTLIGHT_NAME: Student name
-SPOTLIGHT_DETAIL: Sociology · Class of 2027
-SPOTLIGHT_PHOTO: images/student-name.jpg
-```
-
-Keep the quotation in the student’s own voice. Two or three sentences is the recommended maximum.
-
-Never include a student ID, personal phone number, private email address, supervision status, case information, or details about services received.
-
----
-
-## Add photographs to the Community Gallery
-
-1. Open the repository and select the `gallery` folder.
-2. Select **Add file → Upload files**.
-3. Upload approved JPG, JPEG, PNG, WebP, or GIF photographs.
-4. Select **Commit changes** and commit directly to `main`.
-5. Allow GitHub Pages several minutes to deploy. The television checks the folder every five minutes.
-
-Use numbered, descriptive filenames such as:
+Use numbered, descriptive filenames:
 
 ```text
 01-community-lunch.jpg
@@ -213,125 +121,47 @@ Use numbered, descriptive filenames such as:
 03-graduation-celebration.jpg
 ```
 
-The number controls the order. The rest of the filename becomes the on-screen caption. For example, `02-rebound-scholar-orientation.jpg` appears as “rebound scholar orientation.” Images are fitted inside the screen without cropping and rotate every six seconds.
+The number controls the order. The remainder becomes the on-screen caption. Images rotate every six seconds and use `object-fit: contain`, so portrait and landscape photographs are not cropped.
 
-To remove a photograph, open it in the `gallery` folder, use the trash-can option, and commit the deletion. Obtain written permission before publicly displaying identifiable students. Never put student IDs or confidential information in filenames.
+Obtain written permission before publicly displaying identifiable students. Never use student IDs, case information, supervision information, or other confidential details in filenames or captions.
 
----
+## Welcome and spotlight photographs
 
-## Part 7: Understanding the separate code files
+Upload approved images to `images/`, then update:
 
-### `index.html`
+```text
+WELCOME_PHOTO: images/welcome-fall-2026.jpg
+SPOTLIGHT_PHOTO: images/student-name.jpg
+```
 
-This file contains the structure of the nine television screens:
+Recommended images are at least 1600 × 1200 pixels. Use authentic approved Project Rebound photographs when available. The bundled stock images are placeholders and do not depict Project Rebound students.
 
-1. Project Rebound cover
-2. Welcome
-3. Community Gallery
-4. This Week
-5. Public Project Rebound Calendar
-6. Workshops
-7. Support
-8. Rebound Scholar Spotlight
-9. Start Here
+## Music
 
-Edit this file only when adding, removing, or restructuring a screen.
+`MUSIC_VOLUME` accepts a number from `0.00` to `1.00`. The recommended center setting is `0.10`. Music shuffles continuously and does not restart when screens rotate. Raspberry Pi kiosk autoplay instructions are in `KIOSK-SETUP.md`.
 
-### `styles.css`
-
-This file controls:
-
-- Project Rebound colors
-- Typography
-- Mountain silhouettes and paw prints
-- Card layouts
-- Spacing and sizing
-- Photo frames
-- QR-code panels
-- Television scaling
-
-Brand rules:
-
-- Use Coyote Blue/Pantone 3005 C, lighter blue, white, deep navy, and black.
-- Do not add gold, yellow, orange, or unrelated accent colors.
-- Keep the design dignified, aspirational, readable, and Project Rebound-specific.
-
-### `app.js`
-
-This file controls:
-
-- Loading `content.txt`
-- Moving to the next slide every 14 seconds
-- Previous/next controls
-- Keyboard arrow navigation
-- Clock and date
-- Five-minute content and calendar checks that do not interrupt music
-- Shuffled playlist playback and automatic track changes
-
-Do not edit this file for routine content changes.
-
-### `content.txt`
-
-This is the staff-editable file. It contains no HTML, CSS, or JavaScript.
-
----
-
-## Part 8: Preview and verify an update
+## Preview all screens
 
 Live display:
 
 https://mgriggs1989-web.github.io/project-rebound-center/
 
-After committing:
+After committing an update:
 
-1. Wait several minutes.
-2. Open the live display.
-3. Refresh the browser.
-4. Use the small dots or arrow keys to review all nine screens.
-5. Confirm that text fits and QR codes remain visible.
+1. Wait several minutes for GitHub Pages to deploy.
+2. Refresh the live display once.
+3. Use the navigation dots or arrow keys to review all 11 screens.
+4. Confirm that text fits, photographs are appropriate, and QR codes remain visible.
+5. Scan every changed QR code.
+6. Confirm that music continues while screens change.
 
-If an update does not appear:
+## Project Rebound design rules
 
-1. Open the repository’s **Actions** tab.
-2. Look for the latest Pages deployment.
-3. A green check means deployment succeeded.
-4. A red X means the build failed; open it to view the error.
-5. Confirm that every `content.txt` line still contains a colon.
+- Use Coyote Blue, light blue, white, deep navy, and black.
+- Do not add gold, yellow, orange, AmeriCorps colors, or unrelated accent colors.
+- Preserve the official Project Rebound logo and “Welcome home” identity.
+- Keep text concise, dignified, non-stigmatizing, and readable across a large room.
+- Do not copy AmeriCorps logos, illustrations, wording, or page designs.
+- Display only approved public information.
 
----
-
-## Part 9: Safe editing checklist
-
-Before committing an update, confirm:
-
-- All dates and times are accurate.
-- No placeholder wording remains where current information is available.
-- Student permission has been obtained.
-- No FERPA-sensitive or private information appears.
-- Photograph filenames match exactly, including capitalization.
-- Project Rebound blue/white/navy/black branding remains intact.
-- Text is concise enough to read from across the room.
-- Links and QR-code destinations are still correct.
-
----
-
-## Part 10: Recommended staff workflow
-
-Assign one or two staff members as display editors.
-
-Each week:
-
-1. Update `WEEK_RANGE` and the four day/date entries.
-2. Review the three deadlines.
-3. Update workshop information.
-4. Rotate one ticker message if needed.
-5. Preview all nine screens.
-
-Each month:
-
-1. Review contact information and QR-code destinations.
-2. Replace the welcome photograph when an approved current image is available.
-3. Update the Rebound Scholar spotlight with written permission.
-4. Remove outdated event information.
-
-For design or functionality changes, contact the webpage maintainer rather than modifying `styles.css` or `app.js` without review.
+For design or functionality changes, contact the webpage maintainer rather than modifying `styles.css` or `app.js` during routine updates.
