@@ -14,7 +14,7 @@ This guide explains how Project Rebound staff can update the center television d
 
 For routine updates, staff should edit only `content.txt`.
 
-The Upcoming Events screen reads the public Outlook ICS feed listed as `CALENDAR_ICS_URL`. GitHub checks the feed every 30 minutes and updates `calendar-events.json` automatically. Staff should add and edit events in Outlook, not in `calendar-events.json`.
+The Upcoming Events screen reads the public Outlook ICS feed listed as `CALENDAR_ICS_URL`. GitHub checks the feed every 5 minutes and updates `calendar-events.json` automatically. The display also checks the generated event data every 5 minutes. Staff should add and edit events in Outlook, not in `calendar-events.json`.
 
 ---
 
