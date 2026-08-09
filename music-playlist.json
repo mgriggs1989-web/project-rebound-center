@@ -1,37 +1,24 @@
 [
-  {
-    "title": "Waiting Around (LoFi, Calm)",
-    "artist": "HoliznaCC0",
-    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/aVNvUkfJVw1NI9zHSC3I8d760YbwCt31a3Wi6Ydl.mp3",
-    "source": "https://freemusicarchive.org/music/holiznacc0/public-domain-lofi/waiting-around-lofi-calm/",
-    "license": "CC0 1.0"
-  },
-  {
-    "title": "Dream Catcher",
-    "artist": "Kevin MacLeod",
-    "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kevin%20MacLeod%20-%20Dream%20Catcher%20(cc-by)%20(incompetech).ogg",
-    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Dream_Catcher_(cc-by)_(incompetech).ogg",
-    "license": "CC BY 3.0"
-  },
-  {
-    "title": "I Feel It (Instrumental)",
-    "artist": "Sascha Ende",
-    "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sascha%20Ende%20-%20I%20Feel%20It%20(instrumental)%20(cc-by)%20(filmmusic).ogg",
-    "source": "https://commons.wikimedia.org/wiki/File:Sascha_Ende_-_I_Feel_It_(instrumental)_(cc-by)_(filmmusic).ogg",
-    "license": "CC BY 4.0"
-  },
-  {
-    "title": "Warm Sunset",
-    "artist": "MusicLFiles",
-    "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Warm%20Sunset%20by%20MusicLFiles.ogg",
-    "source": "https://commons.wikimedia.org/wiki/File:Warm_Sunset_by_MusicLFiles.ogg",
-    "license": "CC BY 4.0"
-  },
-  {
-    "title": "Chill Beat",
-    "artist": "Maddy",
-    "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Chill%20Beat.ogg",
-    "source": "https://commons.wikimedia.org/wiki/File:Chill_Beat.ogg",
-    "license": "CC0 1.0"
-  }
+  {"title":"Beat Electronic","artist":"Beat","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Beat%20electronic.ogg","source":"https://commons.wikimedia.org/wiki/File:Beat_electronic.ogg","license":"Public domain"},
+  {"title":"Calm (Instrumental)","artist":"Soulker","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Soulker%20-%20Calm%20%28Cloud%20Rap%20Instrumental%29.opus","source":"https://commons.wikimedia.org/wiki/File:Soulker_-_Calm_(Cloud_Rap_Instrumental).opus","license":"CC BY-SA 3.0"},
+  {"title":"Clouds (Instrumental)","artist":"Soulker","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Soulker%20-%20Clouds%20%28Cloud%20Rap%20Instrumental%29.opus","source":"https://commons.wikimedia.org/wiki/File:Soulker_-_Clouds_(Cloud_Rap_Instrumental).opus","license":"CC BY-SA 3.0"},
+  {"title":"Memories (Instrumental)","artist":"Soulker","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Soulker%20-%20Memories%20%28Cloud%20Rap%20Instrumental%20Xavier%20Wulf%20Type%20Beat%29.opus","source":"https://commons.wikimedia.org/wiki/File:Soulker_-_Memories_(Cloud_Rap_Instrumental_Xavier_Wulf_Type_Beat).opus","license":"CC BY-SA 3.0"},
+  {"title":"Dream Catcher","artist":"Kevin MacLeod","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Kevin%20MacLeod%20-%20Dream%20Catcher%20%28cc-by%29%20%28incompetech%29.ogg","source":"https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Dream_Catcher_(cc-by)_(incompetech).ogg","license":"CC BY 3.0"},
+  {"title":"I Feel It (Instrumental)","artist":"Sascha Ende","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Sascha%20Ende%20-%20I%20Feel%20It%20%28instrumental%29%20%28cc-by%29%20%28filmmusic%29.ogg","source":"https://commons.wikimedia.org/wiki/File:Sascha_Ende_-_I_Feel_It_(instrumental)_(cc-by)_(filmmusic).ogg","license":"CC BY 4.0"},
+  {"title":"Azimuth","artist":"Jason Shaw","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Audionautix-com-ccby-azimuth.mp3","source":"https://commons.wikimedia.org/wiki/File:Audionautix-com-ccby-azimuth.mp3","license":"CC BY 3.0"},
+  {"title":"Algorithm","artist":"Jason Shaw","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Audionautix-com-ccby-algorithm.mp3","source":"https://commons.wikimedia.org/wiki/File:Audionautix-com-ccby-algorithm.mp3","license":"CC BY 3.0"},
+  {"title":"Home Base Groove","artist":"Kevin MacLeod","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Kevin%20MacLeod%20-%20Home%20Base%20Groove.ogg","source":"https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Home_Base_Groove.ogg","license":"CC BY 3.0"},
+  {"title":"Dirty Shoes Blues","artist":"Loyalty Freak Music","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Loyalty%20Freak%20Music%20-%2004%20-%20Dirty%20shoes%20blues.ogg","source":"https://commons.wikimedia.org/wiki/File:Loyalty_Freak_Music_-_04_-_Dirty_shoes_blues.ogg","license":"CC0 1.0"},
+  {"title":"Astral Sky (Instrumental)","artist":"Mise","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Mise%20-%2003%20-%20Astral%20Sky%20Instrumental.ogg","source":"https://commons.wikimedia.org/wiki/File:Mise_-_03_-_Astral_Sky_Instrumental.ogg","license":"CC BY 4.0"},
+  {"title":"Magic Hour","artist":"Three Chain Links","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Three%20Chain%20Links%20-%2006%20-%20Magic%20Hour.ogg","source":"https://commons.wikimedia.org/wiki/File:Three_Chain_Links_-_06_-_Magic_Hour.ogg","license":"CC BY 4.0"},
+  {"title":"My Radio Is Broken","artist":"Steve Combs","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Steve%20Combs%20-%2012%20-%20My%20Radio%20is%20Broken.ogg","source":"https://commons.wikimedia.org/wiki/File:Steve_Combs_-_12_-_My_Radio_is_Broken.ogg","license":"CC BY 4.0"},
+  {"title":"Monkey and Moulage","artist":"ROZKOL","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/ROZKOL%20-%2012%20-%20Monkey%20and%20Moulage.ogg","source":"https://commons.wikimedia.org/wiki/File:ROZKOL_-_12_-_Monkey_and_Moulage.ogg","license":"CC BY 4.0"},
+  {"title":"The Pear in the Garden","artist":"Kevin Hartnell","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Kevin%20Hartnell%20-%2003%20-%20The%20Pear%20In%20The%20Garden.ogg","source":"https://commons.wikimedia.org/wiki/File:Kevin_Hartnell_-_03_-_The_Pear_In_The_Garden.ogg","license":"CC BY 4.0"},
+  {"title":"Light Years","artist":"Stellardrone","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Stellardrone%20-%20Light%20Years.ogg","source":"https://commons.wikimedia.org/wiki/File:Stellardrone_-_Light_Years.ogg","license":"CC BY 3.0"},
+  {"title":"Autumn Sunset","artist":"Jason Shaw","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Audionautix-com-ccby-autumnsunset.mp3","source":"https://commons.wikimedia.org/wiki/File:Audionautix-com-ccby-autumnsunset.mp3","license":"CC BY 3.0"},
+  {"title":"Pizzicato","artist":"Ehma","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/01-Ehma-Pizzicato%20%28LAL%29.ogg","source":"https://commons.wikimedia.org/wiki/File:01-Ehma-Pizzicato_(LAL).ogg","license":"Free Art License"},
+  {"title":"Gemini (Instrumental Acoustic)","artist":"PC-ONE","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/PC-ONE%20-%2010%20-%20Gemini%20Instrumental%20Acoustic.ogg","source":"https://commons.wikimedia.org/wiki/File:PC-ONE_-_10_-_Gemini_Instrumental_Acoustic.ogg","license":"CC BY 4.0"},
+  {"title":"Write Hear Right Now (Instrumental)","artist":"PC-ONE","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/PC-ONE%20-%2005%20-%20Write%20Hear%20Right%20Now%20Instrumental%20Acoustic.ogg","source":"https://commons.wikimedia.org/wiki/File:PC-ONE_-_05_-_Write_Hear_Right_Now_Instrumental_Acoustic.ogg","license":"CC BY 4.0"},
+  {"title":"Monachine (Instrumental)","artist":"PC-ONE","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/PC-ONE%20-%2007%20-%20Monachine%20Instrumental%20Acoustic.ogg","source":"https://commons.wikimedia.org/wiki/File:PC-ONE_-_07_-_Monachine_Instrumental_Acoustic.ogg","license":"CC BY 4.0"},
+  {"title":"Say It Anyway (Instrumental)","artist":"PC-ONE","url":"https://commons.wikimedia.org/wiki/Special:Redirect/file/PC-ONE%20-%2009%20-%20Say%20It%20Anyway%20Instrumental%20Acoustic.ogg","source":"https://commons.wikimedia.org/wiki/File:PC-ONE_-_09_-_Say_It_Anyway_Instrumental_Acoustic.ogg","license":"CC BY 4.0"}
 ]
