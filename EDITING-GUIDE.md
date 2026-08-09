@@ -135,6 +135,8 @@ TICKER4: You belong here. Your education and your future matter.
 
 Only upload photographs approved for public display.
 
+The two photographs currently shown are temporary Pexels stock examples. The people pictured are not Project Rebound students. Their source links are documented in `images/README.md`.
+
 ### Upload the file
 
 1. Open the `images` folder.
@@ -151,6 +153,8 @@ Open `content.txt` and update:
 WELCOME_PHOTO: images/welcome-fall-2026.jpg
 SPOTLIGHT_PHOTO: images/student-name.jpg
 ```
+
+Replace the entire web address after `WELCOME_PHOTO:` or `SPOTLIGHT_PHOTO:`. Do not leave the old stock-photo URL on the same line.
 
 Leave either line blank to show the designed Project Rebound placeholder.
 
