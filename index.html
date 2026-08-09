@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Rebound CSUSB — Center Display</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   PROJECT REBOUND CSUSB — CENTER DISPLAY
+   Six screens, rotating every 14 seconds.
+
+   TO EDIT: scroll to "FILL IN YOUR CONTENT HERE" near the top
+   of the page body. Change the text after each colon. Don't
+   touch anything else. Save. It's live within 4 hours on its own.
+   =========================================================== */
+:root{
+  --u:min(1vw,1.7778vh);        /* one unit = 1% of the display width */
+  --navy:#0B1F3A; --navy-deep:#061424;
+  --blue:#2A6FE4; --blue-soft:#7FA9EE;
+  --tan:#C79A5B; --paper:#EEF1F6; --mist:#A9B8CE;
+  --display:"Bricolage Grotesque","Arial Black",sans-serif;
+  --body:"Public Sans",Helvetica,Arial,sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+  --cycle:84s;                  /* 6 slides x 14 seconds */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--navy-deep);font-family:var(--body);display:flex;
+  align-items:center;justify-content:center;min-height:100vh;
+  -webkit-font-smoothing:antialiased}
+
+#stage{
+  position:relative;overflow:hidden;
+  width:calc(100 * var(--u));
+  height:calc(56.25 * var(--u));
+  color:var(--paper);
+  background:
+    radial-gradient(60% 70% at 78% -10%, rgba(42,111,228,.30), transparent 60%),
+    radial-gradient(50% 60% at 8% 108%, rgba(199,154,91,.16), transparent 60%),
+    linear-gradient(160deg,#0B1F3A 0%,#08182C 55%,#061424 100%);
+}
+
+/* ---------- the ridge: San Bernardino skyline on every screen ---------- */
+.ridge{position:absolute;left:0;right:0;bottom:0;height:calc(15.6*var(--u));z-index:1}
+.ridge svg{width:100%;height:100%;display:block}
+
+/* ---------- persistent chrome ---------- */
+.brandbar{position:absolute;top:calc(2.7*var(--u));left:calc(4.6*var(--u));
+  right:calc(4.6*var(--u));display:flex;justify-content:space-between;align-items:flex-start;z-index:5}
+.wordmark{font-family:var(--display);font-weight:800;font-size:calc(1.35*var(--u));
+  letter-spacing:.14em;text-transform:uppercase;line-height:1.35}
+.wordmark b{color:var(--blue-soft);font-weight:800}
+.wordmark em{display:block;font-family:var(--serif);font-style:italic;
+  font-size:calc(1.4*var(--u));letter-spacing:0;text-transform:none;color:var(--tan)}
+.clock{text-align:right;font-family:var(--display);font-weight:600}
+.clock .t{font-size:calc(2.3*var(--u));line-height:1;letter-spacing:-.02em}
+.clock .d{font-size:calc(.88*var(--u));color:var(--mist);letter-spacing:.1em;
+  text-transform:uppercase;margin-top:calc(.4*var(--u));font-family:var(--body);font-weight:500}
+
+.footbar{position:absolute;left:calc(4.6*var(--u));right:calc(4.6*var(--u));
+  bottom:calc(2.3*var(--u));display:flex;justify-content:space-between;
+  align-items:center;gap:calc(2*var(--u));z-index:5}
+.values{display:flex;font-size:calc(.78*var(--u));letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mist);white-space:nowrap;font-weight:500}
+.values span{padding:0 calc(1.35*var(--u))}
+.values span+span{border-left:1px solid rgba(169,184,206,.3)}
+
+/* ticker: four lines, rotating on their own timer */
+.ticker{position:relative;height:calc(1.8*var(--u));flex:1;display:flex;align-items:center;gap:calc(.9*var(--u))}
+.ticker .dotmark{width:calc(.45*var(--u));height:calc(.45*var(--u));border-radius:50%;background:var(--tan);flex:none}
+.ticker .lines{position:relative;flex:1;height:100%}
+.ticker p{position:absolute;left:0;top:0;font-size:calc(1.25*var(--u));line-height:calc(1.8*var(--u));
+  white-space:nowrap;opacity:0;animation:tick 28s infinite}
+.ticker p:nth-child(1){animation-delay:0s}
+.ticker p:nth-child(2){animation-delay:7s}
+.ticker p:nth-child(3){animation-delay:14s}
+.ticker p:nth-child(4){animation-delay:21s}
+@keyframes tick{0%{opacity:0}1.5%{opacity:.95}23%{opacity:.95}25%{opacity:0}100%{opacity:0}}
+
+/* ---------- slide rotation ----------
+   JS drives this (reliable, and lets you tap through manually).
+   The CSS keyframe below only fires if JavaScript never runs at all,
+   so the display can never get stuck on one screen. */
+.slide{position:absolute;inset:0;z-index:3;opacity:0;transition:opacity .7s ease;
+  padding:calc(8.9*var(--u)) calc(4.6*var(--u)) calc(8.4*var(--u))}
+.slide:first-of-type{opacity:1}     /* always visible before anything else runs */
+.slide.on{opacity:1}
+
+html.js .slide{animation:none !important}
+html.js .slide:not(.on){opacity:0}
+html.js .slide.on{opacity:1}
+
+html:not(.js) .slide{animation:cycle var(--cycle) infinite}
+html:not(.js) .slide:nth-of-type(1){animation-delay:0s}
+html:not(.js) .slide:nth-of-type(2){animation-delay:14s}
+html:not(.js) .slide:nth-of-type(3){animation-delay:28s}
+html:not(.js) .slide:nth-of-type(4){animation-delay:42s}
+html:not(.js) .slide:nth-of-type(5){animation-delay:56s}
+html:not(.js) .slide:nth-of-type(6){animation-delay:70s}
+@keyframes cycle{
+  0%{opacity:0} 1.2%{opacity:1} 15.4%{opacity:1} 16.6%{opacity:0} 100%{opacity:0}
+}
+
+/* manual controls — small, out of the way, harmless on an untouched TV */
+.navdots{position:absolute;left:50%;top:calc(2.9*var(--u));transform:translateX(-50%);
+  z-index:8;display:flex;gap:calc(.75*var(--u))}
+.navdots button{width:calc(.6*var(--u));height:calc(.6*var(--u));border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.15);padding:0;cursor:pointer}
+.navdots button.on{background:var(--tan);border-color:var(--tan)}
+.navarrow{position:absolute;top:0;bottom:0;width:12%;z-index:7;background:transparent;
+  border:0;cursor:pointer;color:rgba(255,255,255,.35);font-size:calc(2*var(--u));
+  display:flex;align-items:center;opacity:0;transition:opacity .2s}
+#stage:hover .navarrow{opacity:1}
+.navarrow.prev{left:0;justify-content:flex-start;padding-left:calc(.6*var(--u))}
+.navarrow.next{right:0;justify-content:flex-end;padding-right:calc(.6*var(--u))}
+
+/* ---------- type ---------- */
+.kicker{font-size:calc(.98*var(--u));letter-spacing:.24em;text-transform:uppercase;
+  color:var(--tan);font-weight:600;margin-bottom:calc(1.35*var(--u))}
+h1{font-family:var(--display);font-weight:800;font-size:calc(6.2*var(--u));
+  line-height:.94;letter-spacing:-.03em}
+h1 .b{color:var(--blue-soft)}
+h2{font-family:var(--display);font-weight:800;font-size:calc(4.5*var(--u));
+  line-height:.98;letter-spacing:-.03em;margin-bottom:calc(.7*var(--u))}
+.sub{font-size:calc(1.45*var(--u));color:var(--mist);max-width:57%;line-height:1.45}
+.lede{font-size:calc(1.55*var(--u));line-height:1.5;max-width:40%;
+  color:#DCE4F0;margin-top:calc(1.8*var(--u))}
+
+.two{display:grid;grid-template-columns:1.15fr .85fr;gap:calc(2.9*var(--u));
+  align-items:center;height:100%}
+.two.top{align-items:start;grid-template-columns:1fr .78fr}
+
+/* cards */
+.grid4,.grid3{display:grid;gap:calc(1.35*var(--u));margin-top:calc(2.4*var(--u))}
+.grid4{grid-template-columns:repeat(4,1fr)}
+.grid3{grid-template-columns:repeat(3,1fr)}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);
+  border-radius:calc(1.15*var(--u));padding:calc(1.75*var(--u)) calc(1.65*var(--u))}
+.card .n{font-family:var(--display);font-weight:800;font-size:calc(1.8*var(--u));
+  line-height:1.1;margin-bottom:calc(.7*var(--u))}
+.card .n small{display:block;font-family:var(--body);font-weight:600;font-size:calc(.85*var(--u));
+  letter-spacing:.16em;text-transform:uppercase;color:var(--tan);margin-bottom:calc(.5*var(--u))}
+.card p{font-size:calc(1.2*var(--u));line-height:1.45;color:#CBD6E6}
+.card .meta{font-size:calc(1.1*var(--u));color:var(--blue-soft);font-weight:600;
+  margin-bottom:calc(.5*var(--u))}
+
+/* week list */
+.days{margin-top:calc(2.2*var(--u));border-top:1px solid rgba(255,255,255,.16)}
+.day{display:grid;grid-template-columns:calc(13*var(--u)) 1fr;gap:calc(1.5*var(--u));
+  align-items:baseline;padding:calc(1.35*var(--u)) 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.day dt{font-family:var(--display);font-weight:800;font-size:calc(1.95*var(--u));color:var(--blue-soft)}
+.day dd{font-size:calc(1.55*var(--u));line-height:1.3}
+.panel{background:rgba(199,154,91,.10);border:1px solid rgba(199,154,91,.42);
+  border-radius:calc(1.15*var(--u));padding:calc(1.85*var(--u));margin-top:calc(5*var(--u))}
+.panel h3{font-family:var(--display);font-size:calc(1.25*var(--u));letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tan);margin-bottom:calc(1.1*var(--u));font-weight:800}
+.panel li{list-style:none;font-size:calc(1.3*var(--u));line-height:1.35;
+  padding:calc(.9*var(--u)) 0;border-bottom:1px dashed rgba(199,154,91,.35)}
+.panel li:last-child{border-bottom:0;padding-bottom:0}
+
+/* quote */
+.quote{font-family:var(--serif);font-style:italic;font-size:calc(2.9*var(--u));
+  line-height:1.22;color:#F2F5FA}
+.attrib{margin-top:calc(2*var(--u));display:flex;align-items:center;gap:calc(1.15*var(--u))}
+.attrib .bar{width:calc(.26*var(--u));height:calc(4*var(--u));background:var(--tan);border-radius:99px}
+.attrib .nm{font-family:var(--display);font-weight:800;font-size:calc(2.1*var(--u));line-height:1.1}
+.attrib .dt{font-size:calc(1.2*var(--u));color:var(--mist);margin-top:calc(.3*var(--u))}
+
+/* photo well */
+.media{border-radius:calc(1.35*var(--u));overflow:hidden;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;height:calc(33*var(--u))}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.media img[hidden]{display:none}
+.media .ph{text-align:center;color:var(--mist);font-size:calc(1*var(--u));
+  letter-spacing:.14em;text-transform:uppercase}
+.media .ph svg{display:block;margin:0 auto calc(.9*var(--u))}
+
+/* QR */
+.qrrow{display:flex;gap:calc(3.3*var(--u));margin-top:calc(2.4*var(--u));flex-wrap:wrap}
+.qr{display:flex;align-items:center;gap:calc(1.25*var(--u))}
+.qr img{width:calc(10.9*var(--u));height:calc(10.9*var(--u));background:#fff;
+  border-radius:calc(1*var(--u));padding:calc(.7*var(--u));display:block}
+.qr .lbl{font-family:var(--display);font-weight:800;font-size:calc(1.8*var(--u));line-height:1.1}
+.qr .lbl small{display:block;font-family:var(--body);font-weight:500;font-size:calc(.95*var(--u));
+  letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-top:calc(.5*var(--u))}
+
+.contact{display:flex;gap:calc(2.4*var(--u));flex-wrap:wrap;margin-top:calc(2.4*var(--u));
+  font-size:calc(1.25*var(--u));color:#CBD6E6}
+.contact b{display:block;font-size:calc(.78*var(--u));letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tan);margin-bottom:calc(.35*var(--u));font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  @keyframes cycle{0%{opacity:0}1.2%{opacity:1}15.4%{opacity:1}16.6%{opacity:0}100%{opacity:0}}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================================================================
+     FILL IN YOUR CONTENT HERE — this is the only part you ever touch.
+     One line per item: the LABEL, a colon, then your text.
+     Don't delete a label. Don't add quotes or brackets. That's it.
+     If you leave a line blank, the screen just keeps its old text.
+=================================================================== -->
+<script type="text/plain" id="content">
+HOURS: ADD YOUR HOURS
+WEEK_RANGE: Week of Aug 10
+
+MON: Study hall in FOB-242 — drop in anytime
+TUE: Advising with Michael — ADD TIMES
+WED: Community lunch — ADD TIME
+THU: Outreach hours with Sofia — ADD TIMES
+
+DEADLINE1: Fall classes begin — confirm 2026 date
+DEADLINE2: Census, last day to add or drop — confirm date
+DEADLINE3: FAFSA — file early, we'll sit with you
+
+WS1_WHEN: ADD DATE · TIME · FOB-242
+WS1_NAME: Filing your FAFSA
+WS1_NOTE: Bring your documents. Leave with it submitted.
+
+WS2_WHEN: ADD DATE · TIME · FOB-242
+WS2_NAME: Answering the record question
+WS2_NOTE: How to handle it on jobs, housing, and internships.
+
+WS3_WHEN: ADD DATE · TIME · FOB-242
+WS3_NAME: Transfer & grad school
+WS3_NOTE: Golden Four, units, and what comes after the BA.
+
+TICKER1: Growth. Resilience. Achievement. Building futures together.
+TICKER2: Walk-ins welcome — no appointment needed.
+TICKER3: Ask any staff member about food, transportation, or money.
+TICKER4: "Education is the passport to the future." — Malcolm X
+
+SPOTLIGHT_QUOTE: Add the student's own words here. Two or three sentences is plenty — leave the voice exactly as they said it.
+SPOTLIGHT_NAME: Student name
+SPOTLIGHT_DETAIL: Major · Class of 20XX
+
+WELCOME_PHOTO:
+SPOTLIGHT_PHOTO:
+</script>
+<!-- =================== STOP EDITING ABOVE THIS LINE =================== -->
+
+<div id="stage">
+
+  <!-- ridge line: drawn once, sits behind every screen -->
+  <div class="ridge" aria-hidden="true">
+    <svg viewBox="0 0 1920 300" preserveAspectRatio="none">
+      <path d="M0,300 L0,232 C160,214 260,186 400,166 C540,146 640,196 792,192 C944,188 1020,132 1180,140 C1340,148 1424,196 1580,186 C1700,178 1830,146 1920,128 L1920,300 Z" fill="rgba(42,111,228,.20)"/>
+      <path d="M0,300 L0,196 C120,178 190,150 300,120 C392,95 452,140 548,158 C640,175 700,120 812,86 C900,59 962,104 1060,132 C1168,163 1240,96 1352,64 C1452,35 1520,92 1624,124 C1730,157 1816,120 1920,74 L1920,300 Z" fill="rgba(6,20,36,.85)" stroke="rgba(199,154,91,.55)" stroke-width="2.5"/>
+    </svg>
+  </div>
+
+  <div class="brandbar">
+    <div class="wordmark">PROJECT <b>REBOUND</b> CSUSB<em>Welcome home.</em></div>
+    <div class="clock"><div class="t" id="ct"></div><div class="d" id="cd"></div></div>
+  </div>
+
+  <button class="navarrow prev" aria-label="Previous screen" onclick="PR.prev()">&#8249;</button>
+  <button class="navarrow next" aria-label="Next screen" onclick="PR.next()">&#8250;</button>
+  <div class="navdots" id="dots"></div>
+
+
+  <!-- ============ SCREEN 1 — WELCOME ============ -->
+  <section class="slide">
+    <div class="two">
+      <div>
+        <div class="kicker">You are in the right place</div>
+        <h1>Come in.<br><span class="b">Sit down.</span><br>You belong here.</h1>
+        <p class="lede">Project Rebound opens the door to a CSUSB degree for people with justice system involvement — from the application all the way to the stage at graduation.</p>
+        <div class="contact">
+          <div><b>Where</b>Faculty Office Building, FOB-242</div>
+          <div><b>Open</b><span data-key="hours">ADD YOUR HOURS</span></div>
+          <div><b>Ask us</b>(909) 537-4351</div>
+        </div>
+      </div>
+      <!-- Photo comes from WELCOME_PHOTO in the edit list above. Leave that blank to keep the mountain mark. -->
+      <div class="media">
+        <img data-key="welcome_photo" alt="" hidden>
+        <div class="ph" data-placeholder-for="welcome_photo">
+          <svg width="120" height="80" viewBox="0 0 120 80" fill="none" stroke="#7FA9EE" stroke-width="3.5" stroke-linejoin="round"><circle cx="40" cy="22" r="11"/><path d="M6 74 L44 34 L70 60 L88 44 L114 74 Z"/></svg>
+          Add a photo of your people
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SCREEN 2 — THIS WEEK ============ -->
+  <section class="slide">
+    <div class="two top">
+      <div>
+        <div class="kicker"><span data-key="week_range">Week of Aug 10</span></div>
+        <h2>This week</h2>
+        <dl class="days">
+          <div class="day"><dt>Monday</dt><dd data-key="mon">Study hall in FOB-242 — drop in anytime</dd></div>
+          <div class="day"><dt>Tuesday</dt><dd data-key="tue">Advising with Michael — ADD TIMES</dd></div>
+          <div class="day"><dt>Wednesday</dt><dd data-key="wed">Community lunch — ADD TIME</dd></div>
+          <div class="day"><dt>Thursday</dt><dd data-key="thu">Outreach hours with Sofia — ADD TIMES</dd></div>
+        </dl>
+      </div>
+      <div class="panel">
+        <h3>Don't miss</h3>
+        <ul>
+          <li data-key="deadline1">Fall classes begin — confirm 2026 date</li>
+          <li data-key="deadline2">Census, last day to add or drop — confirm date</li>
+          <li data-key="deadline3">FAFSA — file early, we'll sit with you</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SCREEN 3 — WORKSHOPS ============ -->
+  <section class="slide">
+    <div class="kicker">Free. Bring a friend. No sign-up needed.</div>
+    <h2>Workshops</h2>
+    <div class="grid3">
+      <div class="card">
+        <div class="meta" data-key="ws1_when">ADD DATE · TIME · FOB-242</div>
+        <div class="n" data-key="ws1_name">Filing your FAFSA</div>
+        <p data-key="ws1_note">Bring your documents. Leave with it submitted.</p>
+      </div>
+      <div class="card">
+        <div class="meta" data-key="ws2_when">ADD DATE · TIME · FOB-242</div>
+        <div class="n" data-key="ws2_name">Answering the record question</div>
+        <p data-key="ws2_note">How to handle it on jobs, housing, and internships.</p>
+      </div>
+      <div class="card">
+        <div class="meta" data-key="ws3_when">ADD DATE · TIME · FOB-242</div>
+        <div class="n" data-key="ws3_name">Transfer &amp; grad school</div>
+        <p data-key="ws3_note">Golden Four, units, and what comes after the BA.</p>
+      </div>
+    </div>
+    <div class="qrrow">
+      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fwww.csusb.edu%2Fproject-rebound%2Fnewsroom%2Fupcoming-events" alt="QR code to upcoming events">
+        <div class="lbl">See all dates<small>Scan with your phone camera</small></div></div>
+    </div>
+  </section>
+
+
+  <!-- ============ SCREEN 4 — SUPPORT ============ -->
+  <section class="slide">
+    <h2>Need something today?</h2>
+    <p class="sub">Ask. That's what we're here for. Nothing on this list costs you anything.</p>
+    <div class="grid4">
+      <div class="card"><div class="n"><small>Ask about</small>Food</div><p>Meals and a referral to the campus pantry</p></div>
+      <div class="card"><div class="n"><small>Ask about</small>Getting here</div><p>Transportation help and parking questions</p></div>
+      <div class="card"><div class="n"><small>Ask about</small>Money</div><p>Financial aid, books, and emergency funds</p></div>
+      <div class="card"><div class="n"><small>Ask about</small>Someone to talk to</div><p>Counseling, mentorship, and people who get it</p></div>
+    </div>
+    <div class="qrrow">
+      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fwww.csusb.edu%2Fproject-rebound%2Fresources" alt="QR code to resources page">
+        <div class="lbl">See every resource<small>Scan with your phone camera</small></div></div>
+    </div>
+  </section>
+
+
+  <!-- ============ SCREEN 5 — STUDENT SPOTLIGHT ============ -->
+  <!-- Get written permission before putting a student's face on this wall. -->
+  <section class="slide">
+    <div class="two">
+      <div>
+        <div class="kicker">One of ours</div>
+        <blockquote class="quote" data-key="spotlight_quote">Add the student's own words here. Two or three sentences is plenty — leave the voice exactly as they said it.</blockquote>
+        <div class="attrib">
+          <div class="bar"></div>
+          <div><div class="nm" data-key="spotlight_name">Student name</div><div class="dt" data-key="spotlight_detail">Major · Class of 20XX</div></div>
+        </div>
+        <div class="qrrow">
+          <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fwww.csusb.edu%2Fproject-rebound%2Fnewsroom" alt="QR code to the newsroom">
+            <div class="lbl">Read the full story<small>Scan with your phone camera</small></div></div>
+        </div>
+      </div>
+      <!-- Photo comes from SPOTLIGHT_PHOTO in the edit list above. Get written permission before this goes on a wall-mounted TV. -->
+      <div class="media">
+        <img data-key="spotlight_photo" alt="" hidden>
+        <div class="ph" data-placeholder-for="spotlight_photo">
+          <svg width="120" height="80" viewBox="0 0 120 80" fill="none" stroke="#7FA9EE" stroke-width="3.5" stroke-linejoin="round"><circle cx="40" cy="22" r="11"/><path d="M6 74 L44 34 L70 60 L88 44 L114 74 Z"/></svg>
+          Add their photo
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SCREEN 6 — START HERE ============ -->
+  <section class="slide">
+    <h2>Start here</h2>
+    <div class="grid3">
+      <div class="card"><div class="n">Tell us you're here</div><p>Two-minute questionnaire. Michael or Sofia follows up.</p></div>
+      <div class="card"><div class="n">Sit down with us</div><p>Twenty minutes, this week, in FOB-242.</p></div>
+      <div class="card"><div class="n">Stay in the loop</div><p>Canvas for announcements and resources.</p></div>
+    </div>
+    <div class="qrrow">
+      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fcsusb.az1.qualtrics.com%2Fjfe%2Fform%2FSV_cUCioDDWAUXClnM" alt="QR code to the student questionnaire">
+        <div class="lbl">Start the questionnaire<small>Two minutes</small></div></div>
+      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fcsusb.instructure.com%2Flogin%2Fsaml" alt="QR code to Canvas">
+        <div class="lbl">Open Canvas<small>Announcements</small></div></div>
+    </div>
+    <div class="contact">
+      <div><b>Ask for</b>Michael or Sofia</div>
+      <div><b>Phone</b>(909) 537-4351</div>
+      <div><b>Email</b>ProjectRebound@csusb.edu</div>
+      <div><b>Social</b>@csusbprojectrebound</div>
+    </div>
+  </section>
+
+
+  <div class="footbar">
+    <div class="ticker">
+      <span class="dotmark"></span>
+      <div class="lines">
+        <p data-key="ticker1">Growth. Resilience. Achievement. Building futures together.</p>
+        <p data-key="ticker2">Walk-ins welcome — no appointment needed.</p>
+        <p data-key="ticker3">Ask any staff member about food, transportation, or money.</p>
+        <p data-key="ticker4">&ldquo;Education is the passport to the future.&rdquo; — Malcolm X</p>
+      </div>
+    </div>
+    <div class="values">
+      <span>Belonging</span><span>Resilience</span><span>Transformation</span><span>Opportunity</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* Reads the plain "LABEL: text" list at the top of the page and drops
+   each value into its matching spot. Any line it can't understand is
+   ignored — a typo here can never blank out the display. */
+(function applyContent(){
+  var box=document.getElementById('content');
+  if(!box) return;
+  var data={};
+  box.textContent.split('\n').forEach(function(line){
+    var m=line.match(/^\s*([A-Za-z0-9_]+)\s*:\s*(.*?)\s*$/);
+    if(m && m[2]) data[m[1].toLowerCase()]=m[2];
+  });
+  document.querySelectorAll('[data-key]').forEach(function(el){
+    var v=data[el.getAttribute('data-key')];
+    if(!v) return;
+    if(el.tagName==='IMG'){
+      el.src=v;
+      el.hidden=false;
+      var ph=document.querySelector('[data-placeholder-for="'+el.getAttribute('data-key')+'"]');
+      if(ph) ph.hidden=true;
+    } else {
+      el.textContent=v;
+    }
+  });
+})();
+
+document.documentElement.classList.add('js');  // CSS keyframe fallback backs off once this runs
+
+var PR=(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dotsWrap=document.getElementById('dots');
+  var i=0, timer=null;
+
+  dotsWrap.innerHTML=slides.map(function(_,idx){
+    return '<button aria-label="Go to screen '+(idx+1)+'" onclick="PR.go('+idx+')"></button>';
+  }).join('');
+  var dots=[].slice.call(dotsWrap.children);
+
+  function paint(){
+    slides.forEach(function(s,idx){ s.classList.toggle('on', idx===i); });
+    dots.forEach(function(d,idx){ d.classList.toggle('on', idx===i); });
+  }
+  function run(){ clearInterval(timer); timer=setInterval(next,14000); }
+  function next(){ i=(i+1)%slides.length; paint(); }
+  function prev(){ i=(i-1+slides.length)%slides.length; paint(); }
+  function go(n){ i=n; paint(); run(); }
+
+  paint(); run();
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){next();run()}
+    if(e.key==='ArrowLeft'){prev();run()}
+  });
+  return {next:function(){next();run();}, prev:function(){prev();run();}, go:go};
+})();
+
+/* Reload every 4 hours so content edits reach the TV on their own —
+   nobody has to touch the Pi after IT sets it up once. Cache-busted
+   so it can't get stuck showing an old copy. */
+setTimeout(function(){
+  location.href = location.pathname + '?t=' + Date.now();
+}, 4*60*60*1000);
+
+/* clock */
+(function(){
+  function tick(){
+    var n=new Date(), t=document.getElementById('ct'), d=document.getElementById('cd');
+    if(!t||!d) return;
+    t.textContent=n.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+    d.textContent=n.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'});
+  }
+  tick(); setInterval(tick,15000);
+})();
+</script>
+</body>
+</html>
