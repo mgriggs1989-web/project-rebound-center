@@ -51,9 +51,11 @@ SPOTLIGHT_NAME: Project Rebound Scholar
 SPOTLIGHT_DETAIL: CSUSB · Building what comes next
 
 # Photo instructions:
-# 1. The links below are temporary Pexels stock-photo placeholders.
-# 2. The people pictured are stock models, not Project Rebound students.
-# 3. Replace either URL with an approved image path such as images/welcome.jpg
-# 4. Obtain written permission before publishing an identifiable student photo.
+# 1. COVER_LOGO is the official Project Rebound logo supplied by CSUSB.
+# 2. The other links below are temporary Pexels stock-photo placeholders.
+# 3. The people pictured are stock models, not Project Rebound students.
+# 4. Replace a photo URL with an approved image path such as images/welcome.jpg
+# 5. Obtain written permission before publishing an identifiable student photo.
+COVER_LOGO: https://www.csusb.edu/sites/default/files/upload/image/2025/PR%20New%20Logo.jpg
 WELCOME_PHOTO: https://images.pexels.com/photos/7683887/pexels-photo-7683887.jpeg?auto=compress&dpr=1&h=750&w=1260
 SPOTLIGHT_PHOTO: https://images.pexels.com/photos/37811252/pexels-photo-37811252/free-photo-of-adult-student-in-a-sunlit-classroom.jpeg?auto=compress&dpr=1&h=750&w=1260
