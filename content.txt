@@ -10,7 +10,6 @@ SOCIAL: @csusbprojectrebound
 STAFF_NAMES: Michael or Sofia
 CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.html
 CALENDAR_ICS_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.ics
-MUSIC_URL: https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/aVNvUkfJVw1NI9zHSC3I8d760YbwCt31a3Wi6Ydl.mp3
 MUSIC_VOLUME: 0.10
 
 WEEK_RANGE: This week at the center
