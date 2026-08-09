@@ -20,8 +20,11 @@
   </svg></div>
   <header class="brandbar"><div class="brand"><div class="brand-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V5l7 3v12M20 20V5l-7 3v12M2 20h20"/><path d="M8 16l4-3 4 3"/></svg></div><div class="wordmark">Project <b>Rebound</b> CSUSB<em>Welcome home.</em></div></div><div class="clock"><div class="t" id="clockTime"></div><div class="d" id="clockDate"></div></div></header>
   <button class="navarrow prev" aria-label="Previous screen">&#8249;</button><button class="navarrow next" aria-label="Next screen">&#8250;</button><div class="navdots" id="dots"></div>
-  <button class="music-toggle" id="musicToggle" type="button" aria-label="Pause background music">&#9835; Music</button>
-  <audio id="backgroundMusic" src="https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/aVNvUkfJVw1NI9zHSC3I8d760YbwCt31a3Wi6Ydl.mp3" autoplay loop preload="auto"></audio>
+  <div class="music-control">
+    <button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music">&#9654; Music</button>
+    <span class="music-now" id="musicNowPlaying" aria-live="polite">Loading playlist…</span>
+  </div>
+  <audio id="backgroundMusic" autoplay preload="auto"></audio>
 
   <section class="slide screen-cover on" aria-label="Project Rebound cover"><div class="cover-inner"><div class="cover-rule"></div><div class="cover-logo"><img data-image-key="cover_logo" alt="Project Rebound logo"></div><p>Where lived experience becomes strength and education creates opportunity.</p><div class="cover-tags"><span>Community</span><span>Education</span><span>Transformation</span></div></div></section>
 
@@ -59,6 +62,6 @@
 
   <footer class="footbar"><div class="ticker"><p data-key="ticker1">Growth. Resilience. Achievement. Building futures together.</p><p data-key="ticker2">Walk-ins are welcome—come in and meet the team.</p><p data-key="ticker3">Ask staff about food, transportation, financial aid, or emergency support.</p><p data-key="ticker4">You belong here. Your education and your future matter.</p></div><div class="values"><span>Belonging</span><span>Resilience</span><span>Transformation</span><span>Opportunity</span></div></footer>
 </div>
-<script src="app.js?v=20260809-5" defer></script>
+<script src="app.js?v=20260809-6" defer></script>
 </body>
 </html>
