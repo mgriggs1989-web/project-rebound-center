@@ -10,11 +10,14 @@ This guide explains how Project Rebound staff can update the center television d
 | Background-music volume | `content.txt` |
 | Playlist tracks, artists, sources, and licenses | `music-playlist.json` and `MUSIC-CREDITS.md` |
 | Cover logo, welcome photo, or student photograph | Upload to `images/`, then edit `content.txt` |
+| Rotating Community Gallery photographs | Upload approved images to `gallery/` |
 | Wording built permanently into a screen | `index.html` |
 | Colors, fonts, sizes, cards, spacing, or visual design | `styles.css` |
 | Slide timing, automatic refresh, clock, or content-loading behavior | `app.js` |
 
 For routine updates, staff should edit only `content.txt`.
+
+The Community Gallery is the exception: staff can add or remove approved photographs directly in the `gallery` folder. The display discovers gallery images automatically and checks the folder every five minutes.
 
 The Upcoming Events screen reads the public Outlook ICS feed listed as `CALENDAR_ICS_URL`. GitHub checks the feed every 5 minutes and updates `calendar-events.json` automatically. The display also checks the generated event data every 5 minutes. Staff should add and edit events in Outlook, not in `calendar-events.json`.
 
@@ -194,20 +197,43 @@ Never include a student ID, personal phone number, private email address, superv
 
 ---
 
+## Add photographs to the Community Gallery
+
+1. Open the repository and select the `gallery` folder.
+2. Select **Add file → Upload files**.
+3. Upload approved JPG, JPEG, PNG, WebP, or GIF photographs.
+4. Select **Commit changes** and commit directly to `main`.
+5. Allow GitHub Pages several minutes to deploy. The television checks the folder every five minutes.
+
+Use numbered, descriptive filenames such as:
+
+```text
+01-community-lunch.jpg
+02-rebound-scholar-orientation.jpg
+03-graduation-celebration.jpg
+```
+
+The number controls the order. The rest of the filename becomes the on-screen caption. For example, `02-rebound-scholar-orientation.jpg` appears as “rebound scholar orientation.” Images are fitted inside the screen without cropping and rotate every six seconds.
+
+To remove a photograph, open it in the `gallery` folder, use the trash-can option, and commit the deletion. Obtain written permission before publicly displaying identifiable students. Never put student IDs or confidential information in filenames.
+
+---
+
 ## Part 7: Understanding the separate code files
 
 ### `index.html`
 
-This file contains the structure of the eight television screens:
+This file contains the structure of the nine television screens:
 
 1. Project Rebound cover
 2. Welcome
-3. This Week
-4. Public Project Rebound Calendar
-5. Workshops
-6. Support
-7. Rebound Scholar Spotlight
-8. Start Here
+3. Community Gallery
+4. This Week
+5. Public Project Rebound Calendar
+6. Workshops
+7. Support
+8. Rebound Scholar Spotlight
+9. Start Here
 
 Edit this file only when adding, removing, or restructuring a screen.
 
@@ -261,7 +287,7 @@ After committing:
 1. Wait several minutes.
 2. Open the live display.
 3. Refresh the browser.
-4. Use the small dots or arrow keys to review all six screens.
+4. Use the small dots or arrow keys to review all nine screens.
 5. Confirm that text fits and QR codes remain visible.
 
 If an update does not appear:
@@ -299,7 +325,7 @@ Each week:
 2. Review the three deadlines.
 3. Update workshop information.
 4. Rotate one ticker message if needed.
-5. Preview all six screens.
+5. Preview all nine screens.
 
 Each month:
 
