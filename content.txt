@@ -2,7 +2,7 @@
 # Edit only the text after each colon. Lines beginning with # are instructions.
 # Do not delete the labels on the left.
 
-HOURS: Monday–Thursday, 9:00 a.m.–5:00 p.m.
+HOURS: Ask staff for current center hours
 LOCATION: SMSU South 116
 PHONE: (909) 537-4351
 EMAIL: ProjectRebound@csusb.edu
