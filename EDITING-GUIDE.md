@@ -7,6 +7,7 @@ This guide explains how Project Rebound staff can update the center television d
 | What you want to change | File to edit |
 |---|---|
 | Hours, schedule, workshops, deadlines, calendar link, ticker, contact information, or student spotlight | `content.txt` |
+| Background music and volume | `content.txt` |
 | Cover logo, welcome photo, or student photograph | Upload to `images/`, then edit `content.txt` |
 | Wording built permanently into a screen | `index.html` |
 | Colors, fonts, sizes, cards, spacing, or visual design | `styles.css` |
@@ -15,6 +16,8 @@ This guide explains how Project Rebound staff can update the center television d
 For routine updates, staff should edit only `content.txt`.
 
 The Upcoming Events screen reads the public Outlook ICS feed listed as `CALENDAR_ICS_URL`. GitHub checks the feed every 5 minutes and updates `calendar-events.json` automatically. The display also checks the generated event data every 5 minutes. Staff should add and edit events in Outlook, not in `calendar-events.json`.
+
+Background music is controlled by `MUSIC_URL` and `MUSIC_VOLUME` in `content.txt`. Volume uses a value from `0.00` to `1.00`; the recommended center setting is `0.10`. The on-screen Music button pauses or resumes playback.
 
 ---
 
