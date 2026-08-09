@@ -51,8 +51,9 @@ SPOTLIGHT_NAME: Project Rebound Scholar
 SPOTLIGHT_DETAIL: CSUSB · Building what comes next
 
 # Photo instructions:
-# 1. Upload approved images to the images folder in this repository.
-# 2. Replace the blank space after the colon with a path such as images/welcome.jpg
-# 3. Obtain written permission before publishing an identifiable student photo.
-WELCOME_PHOTO:
-SPOTLIGHT_PHOTO:
+# 1. The links below are temporary Pexels stock-photo placeholders.
+# 2. The people pictured are stock models, not Project Rebound students.
+# 3. Replace either URL with an approved image path such as images/welcome.jpg
+# 4. Obtain written permission before publishing an identifiable student photo.
+WELCOME_PHOTO: https://images.pexels.com/photos/7683887/pexels-photo-7683887.jpeg?auto=compress&dpr=1&h=750&w=1260
+SPOTLIGHT_PHOTO: https://images.pexels.com/photos/37811252/pexels-photo-37811252/free-photo-of-adult-student-in-a-sunlit-classroom.jpeg?auto=compress&dpr=1&h=750&w=1260
