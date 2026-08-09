@@ -4,6 +4,8 @@ This repository powers the television display in the CSUSB Project Rebound Cente
 
 Live display: https://mgriggs1989-web.github.io/project-rebound-center/
 
+Full staff tutorial: [EDITING-GUIDE.md](EDITING-GUIDE.md)
+
 ## The easy way to update the display
 
 You normally edit only `content.txt`. You do not need to change `index.html`.
@@ -71,8 +73,11 @@ The webpage crops photographs to a landscape frame. Images around 1600 × 1200 p
 ## What each file does
 
 - `content.txt` — staff-editable schedule, announcements, contact information, photo paths, and spotlight text.
-- `index.html` — display design and functionality. Do not edit unless changing the layout.
+- `index.html` — structure and wording for the six display screens.
+- `styles.css` — Project Rebound visual design, typography, layout, and television scaling.
+- `app.js` — slide rotation, content loading, clock, and automatic refresh.
 - `images/` — approved public display photographs.
+- `EDITING-GUIDE.md` — complete step-by-step staff tutorial.
 
 ## Project Rebound visual standards
 
