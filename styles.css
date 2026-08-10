@@ -40,7 +40,7 @@
 .screen-story-single .story-scan img{width:calc(9.2*var(--u));height:calc(9.2*var(--u));padding:calc(.35*var(--u))}
 .screen-story-single .story-scan span{font-size:calc(.7*var(--u))}
 .screen-story-single .story-scan b{font-size:calc(1.02*var(--u))}
-.story-luis .story-person{background-image:url("https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2025/Web%20Publishing%20%5BPOST%5D%20-25_7864%20CSUSB_Luis%20Trujillo%20Alumni%20Feature%20%283%29.jpg.webp?h=3112c067&itok=76ORA7Wi")}
-.story-david .story-person{background-image:url("https://rccwww.omniweb.cloud/images/life-at-rcc/events/2024/Reentry%20Conference%202024%20-lg.jpg")}
-.story-rebound .story-person{background-image:url("https://stories.csusb.edu/image/10221245.1677191550000/image.jpg")}
-.story-michael .story-person{background-image:url("https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2024/News%20Site%20%5BPOST%5D%20-24_7190%20CSBS_Michael%20Griggs%20Student%20Feature.jpg.webp?h=015c496d&itok=iCDOC_ry")}
+.screen-story-single.story-luis .story-person{background-image:url("https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2025/Web%20Publishing%20%5BPOST%5D%20-25_7864%20CSUSB_Luis%20Trujillo%20Alumni%20Feature%20%283%29.jpg.webp?h=3112c067&itok=76ORA7Wi")}
+.screen-story-single.story-david .story-person{background-image:url("https://rccwww.omniweb.cloud/images/life-at-rcc/events/2024/Reentry%20Conference%202024%20-lg.jpg")}
+.screen-story-single.story-rebound .story-person{background-image:url("https://stories.csusb.edu/image/10221245.1677191550000/image.jpg")}
+.screen-story-single.story-michael .story-person{background-image:url("https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2024/News%20Site%20%5BPOST%5D%20-24_7190%20CSBS_Michael%20Griggs%20Student%20Feature.jpg.webp?h=015c496d&itok=iCDOC_ry")}
