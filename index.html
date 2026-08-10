@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260810-17">
+<link rel="stylesheet" href="styles.css?v=20260810-18">
 </head>
 <body>
 <main id="stage">
@@ -16,8 +16,10 @@
 
   <header class="brandbar"><div class="brand"><div class="brand-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V5l7 3v12M20 20V5l-7 3v12M2 20h20M8 16l4-3 4 3"/></svg></div><div class="wordmark">Project <b>Rebound</b> CSUSB<em>Welcome home.</em></div></div><div class="clock"><div class="t" id="clockTime"></div><div class="d" id="clockDate"></div></div></header>
   <button class="navarrow prev" aria-label="Previous screen">&#8249;</button><button class="navarrow next" aria-label="Next screen">&#8250;</button><div class="navdots" id="dots"></div>
-  <div class="music-control"><button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music">&#9654; Music</button><span class="music-now" id="musicNowPlaying" aria-live="polite">Loading playlist…</span></div>
-  <audio id="backgroundMusic" autoplay preload="auto"></audio>
+  <div class="music-control"><button class="music-toggle" id="musicToggle" type="button" aria-label="Pause background music">&#10074;&#10074; Music</button><span class="music-now" id="musicNowPlaying" aria-live="polite">Study Beats · YouTube Live</span></div>
+  <div class="youtube-audio-shell" aria-hidden="true">
+    <iframe id="studyBeatsPlayer" src="https://www.youtube.com/embed/sF80I-TQiW0?autoplay=1&amp;mute=0&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;enablejsapi=1" title="Study beats background music" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
 
   <section class="slide screen-cover on" aria-label="Project Rebound cover">
     <div class="cover-inner">
@@ -59,6 +61,6 @@
 
   <footer class="footbar"><div class="ticker"><p data-key="ticker1">Growth. Resilience. Achievement. Building futures together.</p><p data-key="ticker2">Walk-ins are welcome—come in and meet the team.</p><p data-key="ticker3">Ask staff about food, transportation, financial aid, or emergency support.</p><p data-key="ticker4">You belong here. Your education and your future matter.</p></div><div class="values"><span>Belonging</span><span>Resilience</span><span>Transformation</span><span>Opportunity</span></div></footer>
 </main>
-<script src="app.js?v=20260809-8" defer></script>
+<script src="app.js?v=20260810-9" defer></script>
 </body>
 </html>
