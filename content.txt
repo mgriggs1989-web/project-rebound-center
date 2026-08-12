@@ -99,6 +99,7 @@ START2_BODY: Identify resources, deadlines, and a practical plan for moving forw
 START3_TITLE: Check Canvas
 START3_BODY: Find announcements, opportunities, workshops, and program resources.
 CANVAS_CTA: Open Canvas
+RESOURCES_CTA: View resources
 CANVAS_URL: https://csusb.instructure.com/login/saml
 RESOURCES_URL: https://www.csusb.edu/project-rebound/resources
 
