@@ -41,25 +41,29 @@ VOLUNTEER_CTA: Express your interest
 VOLUNTEER_FORM_URL:
 VOLUNTEER_DISCLAIMER: Submitting an interest form does not guarantee placement. Volunteers may be subject to university requirements, training, and approval.
 
-WEEK_RANGE: This week at the center
+WEEK_RANGE: Important dates · Fall 2026
 
 # For each date badge, use a short month/day label such as AUG and 17.
-MON_MONTH: MON
-MON_DATE: —
-MON: Schedule updates coming soon
-TUE_MONTH: TUE
-TUE_DATE: —
-TUE: Schedule updates coming soon
-WED_MONTH: WED
-WED_DATE: —
-WED: Schedule updates coming soon
-THU_MONTH: THU
-THU_DATE: —
-THU: Schedule updates coming soon
+MON_MONTH: AUG
+MON_DATE: 13
+MON_DAY: Thursday
+MON: Fall tuition and fees are due
+TUE_MONTH: AUG
+TUE_DATE: 21
+TUE_DAY: Friday
+TUE: Payment-plan and 100% refund deadlines
+WED_MONTH: AUG
+WED_DATE: 22
+WED_DAY: Saturday
+WED: Fall 2026 term begins
+THU_MONTH: SEP
+THU_DATE: 16
+THU_DAY: Wednesday
+THU: Project Rebound Center Grand Opening · SMSU South 116
 
-DEADLINE1: Important dates will be posted here
-DEADLINE2: Check Canvas for current announcements
-DEADLINE3: Ask staff about upcoming deadlines
+DEADLINE1: September 21 · Fall Census—finalize your course schedule
+DEADLINE2: October 14 · What Does True Justice Look Like? · 12–1 p.m. · Zoom
+DEADLINE3: Scan the True Justice news screen for details and registration
 
 WS1_WHEN: Date and time coming soon
 WS1_NAME: Financial aid support
@@ -74,9 +78,9 @@ WS3_NAME: Transfer and graduate school
 WS3_NOTE: Plan your next academic step with support from our team.
 
 TICKER1: Growth. Resilience. Achievement. Building futures together.
-TICKER2: Walk-ins are welcome—come in and meet the team.
-TICKER3: Ask staff about food, transportation, financial aid, or emergency support.
-TICKER4: You belong here. Your education and your future matter.
+TICKER2: Save the date: Project Rebound Center Grand Opening · September 16 · SMSU South 116.
+TICKER3: Fall tuition and fees are due August 13. Ask staff if you need help reviewing your account.
+TICKER4: September 21 is Fall Census—finalize your course schedule before the deadline.
 
 SPOTLIGHT_QUOTE: Every Rebound Scholar carries a story of resilience, growth, and possibility. A new student spotlight is coming soon.
 SPOTLIGHT_NAME: Project Rebound Scholar
