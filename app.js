@@ -20,14 +20,40 @@ loadGallery();setInterval(loadGallery,5*60*1000);
 const studyBeatsPlayer=document.getElementById('studyBeatsPlayer'),musicToggle=document.getElementById('musicToggle'),musicNowPlaying=document.getElementById('musicNowPlaying');
 let youtubePaused=false,youtubeReady=false;
 function youtubeCommand(func,args=[]){if(!studyBeatsPlayer?.contentWindow)return;studyBeatsPlayer.contentWindow.postMessage(JSON.stringify({event:'command',func,args}),'https://www.youtube.com')}
-function paintMusicButton(blocked=false){musicToggle.textContent=youtubePaused?'▶ Music':'❚❚ Music';musicToggle.setAttribute('aria-label',youtubePaused?'Play background music':'Pause background music');musicToggle.classList.toggle('blocked',blocked)}
+function paintMusicButton(blocked=false){if(!musicToggle)return;musicToggle.textContent=youtubePaused?'▶ Music':'❚❚ Music';musicToggle.setAttribute('aria-label',youtubePaused?'Play background music':'Pause background music');musicToggle.classList.toggle('blocked',blocked)}
 function configureMusic(_data){}
-function requestYouTubePlay(){if(youtubePaused||!youtubeReady)return;youtubeCommand('playVideo');paintMusicButton()}
-function requestYouTubePause(){youtubeCommand('pauseVideo');paintMusicButton()}
-studyBeatsPlayer.addEventListener('load',()=>{youtubeReady=true;studyBeatsPlayer.contentWindow.postMessage(JSON.stringify({event:'listening',id:'studyBeatsPlayer'}),'https://www.youtube.com');[500,1500,3500,7000].forEach(delay=>setTimeout(requestYouTubePlay,delay))});
-window.addEventListener('message',event=>{if(!String(event.origin).includes('youtube.com'))return;let data=event.data;try{if(typeof data==='string')data=JSON.parse(data)}catch(_){return}if(data?.event==='onReady'){youtubeReady=true;requestYouTubePlay()}});
-musicToggle.addEventListener('click',()=>{youtubePaused=!youtubePaused;if(youtubePaused)requestYouTubePause();else requestYouTubePlay()});
-musicNowPlaying.textContent='Study Beats · YouTube Live';paintMusicButton();studyBeatsPlayer.src=studyBeatsPlayer.dataset.src;setInterval(requestYouTubePlay,15000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)requestYouTubePlay()});
+function requestYouTubePlay(){if(youtubePaused||!youtubeReady||!studyBeatsPlayer)return;youtubeCommand('playVideo');paintMusicButton()}
+function requestYouTubePause(){if(!studyBeatsPlayer)return;youtubeCommand('pauseVideo');paintMusicButton()}
+if(studyBeatsPlayer&&musicToggle&&musicNowPlaying){
+  studyBeatsPlayer.addEventListener('load',()=>{youtubeReady=true;studyBeatsPlayer.contentWindow?.postMessage(JSON.stringify({event:'listening',id:'studyBeatsPlayer'}),'https://www.youtube.com');[500,1500,3500,7000].forEach(delay=>setTimeout(requestYouTubePlay,delay))});
+  window.addEventListener('message',event=>{if(!String(event.origin).includes('youtube.com'))return;let data=event.data;try{if(typeof data==='string')data=JSON.parse(data)}catch(_){return}if(data?.event==='onReady'){youtubeReady=true;requestYouTubePlay()}});
+  musicToggle.addEventListener('click',()=>{youtubePaused=!youtubePaused;if(youtubePaused)requestYouTubePause();else requestYouTubePlay()});
+  musicNowPlaying.textContent='Study Beats · YouTube Live';
+  paintMusicButton();
+  studyBeatsPlayer.src=studyBeatsPlayer.dataset.src;
+  setInterval(requestYouTubePlay,15000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)requestYouTubePlay()});
+}else{
+  if(musicToggle)musicToggle.hidden=true;
+  if(musicNowPlaying)musicNowPlaying.textContent='';
+}
 
-const PR=(()=>{const slides=[...document.querySelectorAll('.slide')],wrap=document.getElementById('dots');let index=0,timer;wrap.innerHTML=slides.map((_,i)=>'<button aria-label="Go to screen '+(i+1)+'"></button>').join('');const dots=[...wrap.children];function paint(){slides.forEach((s,i)=>s.classList.toggle('on',i===index));dots.forEach((d,i)=>d.classList.toggle('on',i===index))}function run(){clearTimeout(timer);const duration=Math.max(10000,Number(slides[index].dataset.duration)||15000);timer=setTimeout(()=>go(index+1),duration)}function go(n){index=(n+slides.length)%slides.length;paint();run()}dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));document.querySelector('.prev').addEventListener('click',()=>go(index-1));document.querySelector('.next').addEventListener('click',()=>go(index+1));document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(index+1);if(e.key==='ArrowLeft')go(index-1)});paint();run();return{go}})();
+const PR=(()=>{
+  const slides=[...document.querySelectorAll('.slide')],wrap=document.getElementById('dots');
+  if(!slides.length||!wrap)return{go:()=>{}};
+  let index=0,timer=null;
+  wrap.innerHTML=slides.map((_,i)=>'<button aria-label="Go to screen '+(i+1)+'"></button>').join('');
+  const dots=[...wrap.children];
+  function paint(){slides.forEach((slide,i)=>slide.classList.toggle('on',i===index));dots.forEach((dot,i)=>dot.classList.toggle('on',i===index))}
+  function duration(){const requested=Number(slides[index]?.dataset.duration);return Number.isFinite(requested)&&requested>=10000?requested:15000}
+  function run(){clearTimeout(timer);timer=setTimeout(()=>go(index+1),duration())}
+  function go(nextIndex){index=(nextIndex+slides.length)%slides.length;paint();run()}
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>go(i)));
+  document.querySelector('.prev')?.addEventListener('click',()=>go(index-1));
+  document.querySelector('.next')?.addEventListener('click',()=>go(index+1));
+  document.addEventListener('keydown',event=>{if(event.key==='ArrowRight')go(index+1);if(event.key==='ArrowLeft')go(index-1)});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)run()});
+  paint();run();
+  return{go};
+})();
 (function clock(){function tick(){const n=new Date();document.getElementById('clockTime').textContent=n.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});document.getElementById('clockDate').textContent=n.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'})}tick();setInterval(tick,15000)})();
