@@ -1,28 +1,153 @@
 # PROJECT REBOUND CENTER DISPLAY CONTENT
 # Edit only the text after each colon. Lines beginning with # are instructions.
-# Do not delete the labels on the left.
+# Do not delete labels. Keep each value on one line.
+# Use YES or NO for fields ending in _ACTIVE.
 
+# ============================================================
+# CONTACT INFORMATION
+# ============================================================
 HOURS: Ask staff for current center hours
 LOCATION: SMSU South 116
 PHONE: (909) 537-4351
 EMAIL: ProjectRebound@csusb.edu
 SOCIAL: @csusbprojectrebound
 STAFF_NAMES: Michael or Sofia
+
+# Public Outlook calendar. Staff normally update events in Outlook.
 CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.html
 CALENDAR_ICS_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.ics
-MUSIC_VOLUME: 0.10
 
-# PROJECT REBOUND JUSTICE LAB PAGE
+# ============================================================
+# DISPLAY TIMING
+# Normal screens should remain at least 10 seconds.
+# ============================================================
+DEFAULT_SCREEN_SECONDS: 15
+GALLERY_SCREEN_SECONDS: 90
+GALLERY_PHOTO_SECONDS: 7
+STORY_SCREEN_SECONDS: 20
+TICKER_SECONDS: 7
+
+# The current Study Beats stream is controlled by YouTube and browser/kiosk volume.
+MUSIC_LABEL: Study Beats · YouTube Live
+
+# ============================================================
+# OPTIONAL IMPORTANT-ANNOUNCEMENT SCREEN
+# Change ALERT_ACTIVE to YES to add this screen to the rotation.
+# Change it back to NO when the message is no longer current.
+# ============================================================
+ALERT_ACTIVE: NO
+ALERT_HEADLINE: Important Project Rebound update
+ALERT_TEXT: Add a concise time-sensitive announcement here.
+ALERT_EXPIRES: See Project Rebound staff for details
+
+# ============================================================
+# COVER PAGE
+# ============================================================
+COVER_KICKER: Education · Community · Possibility
+COVER_HEADLINE: Your story
+COVER_HEADLINE_ACCENT: continues here.
+COVER_QUOTE: Where lived experience becomes strength and education creates opportunity.
+COVER_WELCOME: Welcome to a community built on dignity, shared purpose, and the belief that your future is yours to shape.
+COVER_LOGO: images/project-rebound-logo.svg
+
+# ============================================================
+# WELCOME AND BELONGING PAGE
+# ============================================================
+WELCOME_KICKER: You are in the right place
+WELCOME_HEADLINE: Come in.
+WELCOME_HEADLINE_ACCENT: You belong here.
+WELCOME_BODY: Project Rebound opens the door to a CSUSB degree for people with justice system involvement—from application through graduation and beyond.
+WELCOME_MISSION: Education changes everything
+WELCOME_PHOTO: images/welcome-met-community.jpg
+
+# ============================================================
+# PROJECT REBOUND SERVICES
+# ============================================================
+SERVICES_KICKER: From application to graduation—and beyond
+SERVICES_HEADLINE: Project Rebound Services
+SERVICES_INTRO: Individualized support designed to help Rebound Scholars enter CSUSB, persist, graduate, and build what comes next.
+
+SERVICE1_NAME: Academic advising
+SERVICE1_BODY: Degree planning, course guidance, transfer preparation, and graduation support.
+SERVICE2_NAME: Admissions and enrollment
+SERVICE2_BODY: Application guidance, transcript review, special enrollment, and campus navigation.
+SERVICE3_NAME: Financial aid
+SERVICE3_BODY: FAFSA, scholarships, financial-aid navigation, books, and emergency assistance.
+SERVICE4_NAME: Basic needs
+SERVICE4_BODY: Food, transportation, technology, wellness, and connections to campus resources.
+SERVICE5_NAME: Housing support
+SERVICE5_BODY: Housing navigation, stabilization resources, and eligible assistance programs.
+SERVICE6_NAME: Case management and advocacy
+SERVICE6_BODY: Individualized planning, campus advocacy, referrals, and reentry resource navigation.
+SERVICE7_NAME: Mentoring
+SERVICE7_BODY: Guidance from people who understand the journey, with encouragement, accountability, and connection.
+SERVICE8_NAME: Career and graduate school
+SERVICE8_BODY: Career preparation, internships, professional development, and advanced-degree planning.
+SERVICE9_NAME: Community and workshops
+SERVICE9_BODY: Belonging, peer connection, center activities, workshops, celebrations, and events.
+
+# ============================================================
+# CURRENT REBOUND SCHOLARS / START HERE
+# ============================================================
+START_KICKER: Your next step starts here
+START_HEADLINE: Stay connected
+START_BODY: Use the center, connect with staff, and stay current through Canvas.
+START1_TITLE: Tell us what you need
+START1_BODY: Connect with Project Rebound staff before a challenge becomes a barrier.
+START2_TITLE: Meet with the team
+START2_BODY: Identify resources, deadlines, and a practical plan for moving forward.
+START3_TITLE: Check Canvas
+START3_BODY: Find announcements, opportunities, workshops, and program resources.
+CANVAS_CTA: Open Canvas
+CANVAS_URL: https://csusb.instructure.com/login/saml
+RESOURCES_URL: https://www.csusb.edu/project-rebound/resources
+
+# ============================================================
+# PROJECT REBOUND JUSTICE LAB
+# ============================================================
+JUSTICE_LAB_KICKER: Powered by CSUSB VETI
 JUSTICE_LAB_HEADLINE: Your experience can shape what the world knows.
 JUSTICE_LAB_BODY: The Project Rebound Justice Lab is an active learning and research space where justice-impacted students gain technology skills, receive mentorship, and help produce research that benefits our communities.
+JUSTICE_LAB_ACTIVITY1_NAME: Technology and digital skills
+JUSTICE_LAB_ACTIVITY1_BODY: Research-ready laptops, Microsoft and Google tools, Qualtrics, CV development, and ethical AI.
+JUSTICE_LAB_ACTIVITY2_NAME: Research and data
+JUSTICE_LAB_ACTIVITY2_BODY: Excel, SPSS, NVivo, data cleaning, analysis, visualization, and qualitative and quantitative research design.
+JUSTICE_LAB_ACTIVITY3_NAME: Mentorship and opportunity
+JUSTICE_LAB_ACTIVITY3_BODY: Peer-led learning, faculty collaboration, real-world projects, graduate-school preparation, conferences, and publications.
+JUSTICE_LAB_JOIN_LABEL: How to get involved
 JUSTICE_LAB_CTA: Attend a workshop, explore a research project, share your expertise, or ask about becoming a peer research leader.
+JUSTICE_LAB_CONTACT: ProjectRebound@csusb.edu
+JUSTICE_LAB_LINK_LABEL: Learn more
+JUSTICE_LAB_URL: https://www.csusb.edu/project-rebound
 
-# PROJECT REBOUND HOUSING INITIATIVE PAGE
+# ============================================================
+# PROJECT REBOUND HOUSING INITIATIVE
+# ============================================================
+HOUSING_KICKER: Housing stability · Academic momentum
 HOUSING_HEADLINE: Housing should not stand between a scholar and a degree.
 HOUSING_BODY: Project Rebound’s Housing Initiative helps eligible Rebound Scholars address housing barriers through individualized planning, short-term assistance, and connections to longer-term stability.
+HOUSING_CTA_TITLE: Start with a conversation
+HOUSING_CTA_BODY: Meet privately with Project Rebound staff to discuss your circumstances, other available resources, and the most appropriate next step.
+HOUSING_CONTACT_HEADING: Experiencing housing instability?
+HOUSING_DISCLAIMER: Assistance depends on eligibility, available funding, documentation, and program approval.
 
+HOUSING_SUPPORT1_LABEL: Immediate
+HOUSING_SUPPORT1_NAME: Last Gap
+HOUSING_SUPPORT1_BODY: One-time support for an urgent housing shortfall after other available resources have been explored.
+HOUSING_SUPPORT2_LABEL: Transitional
+HOUSING_SUPPORT2_NAME: Decreasing Stipend
+HOUSING_SUPPORT2_BODY: Time-limited assistance that gradually decreases while the scholar works toward sustainable housing.
+HOUSING_SUPPORT3_LABEL: Campus-based
+HOUSING_SUPPORT3_NAME: Dorm Assistance
+HOUSING_SUPPORT3_BODY: Financial aid or a student contribution is applied first; approved Project Rebound assistance may help cover the remaining gap and decreases over time.
+HOUSING_SUPPORT4_LABEL: Long-term vision
+HOUSING_SUPPORT4_NAME: Coyote House
+HOUSING_SUPPORT4_BODY: A restorative, education-centered housing community designed to support belonging, stability, and degree completion.
+
+# ============================================================
 # PROSPECTIVE STUDENT INTEREST PAGE
 # Use only eligibility language approved by Project Rebound leadership.
+# ============================================================
 INTEREST_KICKER: Take the first step
 INTEREST_HEADLINE: Interested in Project Rebound?
 INTEREST_BODY: Tell us about your educational goals. Our team will follow up, answer questions, and help you understand your next steps.
@@ -31,19 +156,99 @@ INTEREST_CTA: Complete the interest form
 INTEREST_FORM_URL: https://csusb.az1.qualtrics.com/jfe/form/SV_cUCioDDWAUXClnM
 INTEREST_DISCLAIMER: Submitting this form is not an admissions decision or a guarantee of program eligibility.
 
+# ============================================================
 # VOLUNTEER PAGE
-# Leave VOLUNTEER_FORM_URL blank until an approved public form is available.
+# Leave VOLUNTEER_FORM_URL blank until an approved public form is ready.
+# ============================================================
 VOLUNTEER_KICKER: Give your time · Share your strengths
 VOLUNTEER_HEADLINE: Volunteer with Project Rebound
 VOLUNTEER_BODY: Help strengthen a community where Rebound Scholars are seen, supported, and connected to opportunity.
 VOLUNTEER_AUDIENCE: CSUSB students, faculty, staff, alumni, community members, and approved partners are welcome to inquire.
+VOLUNTEER_ROLE1: Workshops
+VOLUNTEER_ROLE2: Mentoring
+VOLUNTEER_ROLE3: Events
+VOLUNTEER_ROLE4: Resource navigation
+VOLUNTEER_ROLE5: Career development
+VOLUNTEER_ROLE6: Donation drives
 VOLUNTEER_CTA: Express your interest
 VOLUNTEER_FORM_URL:
 VOLUNTEER_DISCLAIMER: Submitting an interest form does not guarantee placement. Volunteers may be subject to university requirements, training, and approval.
 
-WEEK_RANGE: Important dates · Fall 2026
+# ============================================================
+# NEWS STORY SCREENS
+# Use NEWS#_ACTIVE: NO to remove an individual story from rotation.
+# Images may be a public HTTPS URL or an approved repository path.
+# ============================================================
+NEWS1_ACTIVE: YES
+NEWS1_KICKER: Rebound Scholar journey
+NEWS1_SECTION_HEADLINE: Read their stories
+NEWS1_SECTION_MESSAGE: Education changes what people believe is possible.
+NEWS1_INITIALS: LT
+NEWS1_TAG: Research · Leadership · Education
+NEWS1_HEADLINE: From a life sentence to the Ivy League
+NEWS1_SUMMARY: Luis Trujillo became a CSUSB leader and earned a prestigious research residency at Yale.
+NEWS1_URL: https://www.csusb.edu/inside/article/588508/inmate-ivy-league-how-one-csusb-student-transformed-his-life-through
+NEWS1_IMAGE: https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2025/Web%20Publishing%20%5BPOST%5D%20-25_7864%20CSUSB_Luis%20Trujillo%20Alumni%20Feature%20%283%29.jpg.webp?h=3112c067&itok=76ORA7Wi
+NEWS1_CTA_PREFIX: Scan to read
+NEWS1_CTA: Luis’s story
 
-# For each date badge, use a short month/day label such as AUG and 17.
+NEWS2_ACTIVE: YES
+NEWS2_KICKER: Rebound Scholar journey
+NEWS2_SECTION_HEADLINE: Read their stories
+NEWS2_SECTION_MESSAGE: Education creates pathways to research, leadership, and advanced study.
+NEWS2_INITIALS: DP
+NEWS2_TAG: Research · Keynote · Doctoral pathway
+NEWS2_HEADLINE: From CSUSB to UC Irvine
+NEWS2_SUMMARY: David Penny turned lived experience into scholarship, research, public leadership, and doctoral study in criminology.
+NEWS2_URL: https://www.rcc.edu/life-at-rcc/events/reentry-conference-2024.html
+NEWS2_IMAGE: https://rccwww.omniweb.cloud/images/life-at-rcc/events/2024/Reentry%20Conference%202024%20-lg.jpg
+NEWS2_CTA_PREFIX: Scan to read
+NEWS2_CTA: David’s journey
+
+NEWS3_ACTIVE: YES
+NEWS3_KICKER: Project Rebound impact
+NEWS3_SECTION_HEADLINE: Read our stories
+NEWS3_SECTION_MESSAGE: Project Rebound creates community, connection, and pathways through higher education.
+NEWS3_INITIALS: PR
+NEWS3_TAG: Graduation · Purpose · Growth
+NEWS3_HEADLINE: From incarceration to higher education
+NEWS3_SUMMARY: This CSUSB feature shows how Project Rebound creates pathways from incarceration to higher education, graduation, and new possibilities.
+NEWS3_URL: https://stories.csusb.edu/fl21-from-incarceration-to-higher-education-project-rebound
+NEWS3_IMAGE: https://stories.csusb.edu/image/10221245.1677191550000/image.jpg
+NEWS3_CTA_PREFIX: Scan to read
+NEWS3_CTA: Project Rebound feature
+
+NEWS4_ACTIVE: YES
+NEWS4_KICKER: Rebound Scholar journey
+NEWS4_SECTION_HEADLINE: Read their stories
+NEWS4_SECTION_MESSAGE: Lived experience can become service, mentorship, and scholarship.
+NEWS4_INITIALS: MG
+NEWS4_TAG: Service · Scholarship · Transformation
+NEWS4_HEADLINE: From incarceration to inspiration
+NEWS4_SUMMARY: Michael Griggs carried Project Rebound’s community into service, mentorship, and doctoral study.
+NEWS4_URL: https://www.csusb.edu/inside/article/583320/incarceration-inspiration-educational-journey-michael-griggs
+NEWS4_IMAGE: https://www.csusb.edu/sites/default/files/styles/cover_image/public/upload/image/2024/News%20Site%20%5BPOST%5D%20-24_7190%20CSBS_Michael%20Griggs%20Student%20Feature.jpg.webp?h=015c496d&itok=iCDOC_ry
+NEWS4_CTA_PREFIX: Scan to read
+NEWS4_CTA: Michael’s story
+
+NEWS5_ACTIVE: YES
+NEWS5_KICKER: Project Rebound in the news
+NEWS5_SECTION_HEADLINE: Read the latest feature
+NEWS5_SECTION_MESSAGE: Follow Project Rebound’s growing public impact and community partnerships.
+NEWS5_INITIALS: PR
+NEWS5_TAG: CSUSB · Community · Opportunity
+NEWS5_HEADLINE: Project Rebound in the news
+NEWS5_SUMMARY: Read this CSUSB feature highlighting Project Rebound’s work, public service, and expanding community impact.
+NEWS5_URL: https://www.csusb.edu/event/597341
+NEWS5_IMAGE: images/project-rebound-logo.svg
+NEWS5_CTA_PREFIX: Scan to read
+NEWS5_CTA: CSUSB feature
+
+# ============================================================
+# CENTER SCHEDULE
+# For each date badge, use a short month such as AUG.
+# ============================================================
+WEEK_RANGE: Important dates · Fall 2026
 MON_MONTH: AUG
 MON_DATE: 13
 MON_DAY: Thursday
@@ -65,33 +270,23 @@ DEADLINE1: September 21 · Fall Census—finalize your course schedule
 DEADLINE2: October 14 · What Does True Justice Look Like? · 12–1 p.m. · Zoom
 DEADLINE3: Scan the True Justice news screen for details and registration
 
+# ============================================================
+# WORKSHOPS
+# ============================================================
 WS1_WHEN: Date and time coming soon
 WS1_NAME: Financial aid support
 WS1_NOTE: Bring your questions and leave with a clear next step.
-
 WS2_WHEN: Date and time coming soon
 WS2_NAME: Career readiness
 WS2_NOTE: Practical guidance for jobs, internships, and professional growth.
-
 WS3_WHEN: Date and time coming soon
 WS3_NAME: Transfer and graduate school
 WS3_NOTE: Plan your next academic step with support from our team.
 
+# ============================================================
+# BOTTOM TICKER
+# ============================================================
 TICKER1: Growth. Resilience. Achievement. Building futures together.
 TICKER2: Save the date: Project Rebound Center Grand Opening · September 16 · SMSU South 116.
 TICKER3: Fall tuition and fees are due August 13. Ask staff if you need help reviewing your account.
 TICKER4: September 21 is Fall Census—finalize your course schedule before the deadline.
-
-SPOTLIGHT_QUOTE: Every Rebound Scholar carries a story of resilience, growth, and possibility. A new student spotlight is coming soon.
-SPOTLIGHT_NAME: Project Rebound Scholar
-SPOTLIGHT_DETAIL: CSUSB · Building what comes next
-
-# Photo instructions:
-# 1. COVER_LOGO is the official Project Rebound logo supplied by CSUSB.
-# 2. The other links below are temporary Pexels stock-photo placeholders.
-# 3. The people pictured are stock models, not Project Rebound students.
-# 4. Replace a photo URL with an approved image path such as images/welcome.jpg
-# 5. Obtain written permission before publishing an identifiable student photo.
-COVER_LOGO: images/project-rebound-logo.svg
-WELCOME_PHOTO: images/welcome-stock-placeholder.svg
-SPOTLIGHT_PHOTO: images/spotlight-stock-placeholder.svg
