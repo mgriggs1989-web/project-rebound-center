@@ -68,7 +68,7 @@ The current welcome image is the approved photograph at The Metropolitan Museum 
 
 ## Services
 
-The services screen supports nine editable services:
+The services screen includes nine active services and three optional expansion slots:
 
 ```text
 SERVICES_KICKER:
@@ -80,9 +80,17 @@ SERVICE1_BODY:
 ...
 SERVICE9_NAME:
 SERVICE9_BODY:
+
+SERVICE10_ACTIVE: NO
+SERVICE10_NAME:
+SERVICE10_BODY:
+...
+SERVICE12_ACTIVE: NO
+SERVICE12_NAME:
+SERVICE12_BODY:
 ```
 
-Keep descriptions concise so all nine cards remain readable across the center.
+Keep descriptions concise. Change an optional service’s `ACTIVE` field to `YES` only after adding approved wording. Leave it at `NO` to keep that card off the screen.
 
 ## Current Rebound Scholars / Start Here
 
