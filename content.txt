@@ -11,7 +11,6 @@ LOCATION: SMSU South 116
 PHONE: (909) 537-4351
 EMAIL: ProjectRebound@csusb.edu
 SOCIAL: @csusbprojectrebound
-STAFF_NAMES: Michael or Sofia
 
 # Public Outlook calendar. Staff normally update events in Outlook.
 CALENDAR_URL: https://outlook.office365.com/owa/calendar/5b012b6be48c43859b9711a2c16f2493@csusb.edu/dfe6ebd715484409a4b45172cd9bf06315442794263334034729/calendar.html
