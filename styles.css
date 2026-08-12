@@ -85,3 +85,5 @@
 .screen-story-single .story-person{background-color:var(--navy);background-repeat:no-repeat}
 
 .start-qr-group{display:flex;align-items:center;gap:calc(1.2*var(--u))}.start-qr-group .mini-qr{display:grid;grid-template-columns:calc(4.8*var(--u)) auto;grid-template-rows:1fr;align-items:center;gap:calc(.55*var(--u))}.start-qr-group .mini-qr img{width:calc(4.8*var(--u));height:calc(4.8*var(--u));grid-row:auto}.start-qr-group .mini-qr a{max-width:calc(6.5*var(--u));line-height:1.15}
+
+.service-card[hidden]{display:none!important}
