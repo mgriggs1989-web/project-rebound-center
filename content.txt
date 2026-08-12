@@ -86,6 +86,17 @@ SERVICE8_BODY: Career preparation, internships, professional development, and ad
 SERVICE9_NAME: Community and workshops
 SERVICE9_BODY: Belonging, peer connection, center activities, workshops, celebrations, and events.
 
+# Optional slots. Change ACTIVE to YES only after adding approved wording.
+SERVICE10_ACTIVE: NO
+SERVICE10_NAME: Optional service
+SERVICE10_BODY: Add an approved service description here.
+SERVICE11_ACTIVE: NO
+SERVICE11_NAME: Optional service
+SERVICE11_BODY: Add an approved service description here.
+SERVICE12_ACTIVE: NO
+SERVICE12_NAME: Optional service
+SERVICE12_BODY: Add an approved service description here.
+
 # ============================================================
 # CURRENT REBOUND SCHOLARS / START HERE
 # ============================================================
