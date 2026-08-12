@@ -1,119 +1,273 @@
 # Project Rebound Center Display: Staff Editing Guide
 
-The center display is designed so routine updates can be completed without editing HTML, CSS, or JavaScript. Staff should normally edit only `content.txt`, the public Outlook calendar, or the `gallery` folder.
+Routine updates should be made in one of three places:
 
-## Quick reference
-
-| Update | Where to make it |
+| What you want to update | Where to update it |
 |---|---|
-| Hours, contact information, weekly schedule, deadlines, workshops, ticker, spotlight, interest wording, eligibility wording, and volunteer wording | `content.txt` |
-| Prospective-student interest-form link | `INTEREST_FORM_URL` in `content.txt` |
-| Volunteer-form link | `VOLUNTEER_FORM_URL` in `content.txt` |
-| Upcoming events | Public Project Rebound Outlook calendar |
-| Community Gallery photographs | `gallery/` folder |
-| Welcome and spotlight photographs | Upload to `images/`, then update `content.txt` |
-| Music volume | `MUSIC_VOLUME` in `content.txt` |
-| Playlist tracks and licenses | `music-playlist.json` and `MUSIC-CREDITS.md` |
+| Screen wording, links, alerts, and timing | `content.txt` |
+| Upcoming public events | Project Rebound’s public Outlook calendar |
+| Community photographs | GitHub’s `gallery/` folder |
 
-## Edit `content.txt`
+Do not edit `index.html`, `styles.css`, or `app.js` for routine updates.
 
-1. Open the `project-rebound-center` repository.
+## Editing content.txt
+
+1. Open the `project-rebound-center` repository on GitHub.
 2. Select `content.txt`.
-3. Click the pencil icon labeled **Edit this file**.
-4. Change only the text after the colon.
-5. Select **Commit changes** and commit directly to `main`.
+3. Select the pencil icon, **Edit this file**.
+4. Change only the text after a colon.
+5. Select **Commit changes** and commit to `main`.
+6. Wait several minutes for GitHub Pages, then refresh the display once.
 
-Every editable line follows this format:
+Every setting uses this format:
 
 ```text
 LABEL: Text shown on the television
 ```
 
-Do not change or delete the label on the left.
+Keep labels on the left unchanged. Keep each value on one line. Lines beginning with `#` are instructions and do not appear on the television.
+
+## Important announcement screen
+
+The announcement screen is optional:
+
+```text
+ALERT_ACTIVE: YES
+ALERT_HEADLINE: Center closed Friday
+ALERT_TEXT: Project Rebound will reopen Monday at 8:00 a.m.
+ALERT_EXPIRES: Friday, August 28
+```
+
+Use `YES` to add the announcement to rotation. Change it to `NO` when the message expires. Do not use this screen for confidential student information.
+
+## Cover and welcome screen
+
+Update the cover through:
+
+```text
+COVER_KICKER:
+COVER_HEADLINE:
+COVER_HEADLINE_ACCENT:
+COVER_QUOTE:
+COVER_WELCOME:
+COVER_LOGO:
+```
+
+Update “You Belong Here” through:
+
+```text
+WELCOME_KICKER:
+WELCOME_HEADLINE:
+WELCOME_HEADLINE_ACCENT:
+WELCOME_BODY:
+WELCOME_MISSION:
+WELCOME_PHOTO: images/welcome-met-community.jpg
+```
+
+The current welcome image is the approved photograph at The Metropolitan Museum of Art. New welcome images should be uploaded to `images/` and referenced by repository path. The page uses `object-fit: contain`, so the entire portrait or landscape image remains visible.
+
+## Services
+
+The services screen supports nine editable services:
+
+```text
+SERVICES_KICKER:
+SERVICES_HEADLINE:
+SERVICES_INTRO:
+
+SERVICE1_NAME:
+SERVICE1_BODY:
+...
+SERVICE9_NAME:
+SERVICE9_BODY:
+```
+
+Keep descriptions concise so all nine cards remain readable across the center.
+
+## Current Rebound Scholars / Start Here
+
+Update the page heading and its three steps through:
+
+```text
+START_KICKER:
+START_HEADLINE:
+START_BODY:
+START1_TITLE:
+START1_BODY:
+START2_TITLE:
+START2_BODY:
+START3_TITLE:
+START3_BODY:
+CANVAS_CTA:
+CANVAS_URL:
+RESOURCES_URL:
+```
+
+Always test public URLs and QR codes after changing them.
+
+## News stories
+
+Each news article has its own television screen. Five story groups are available: `NEWS1` through `NEWS5`.
+
+```text
+NEWS1_ACTIVE: YES
+NEWS1_KICKER:
+NEWS1_SECTION_HEADLINE:
+NEWS1_SECTION_MESSAGE:
+NEWS1_INITIALS:
+NEWS1_TAG:
+NEWS1_HEADLINE:
+NEWS1_SUMMARY:
+NEWS1_URL:
+NEWS1_IMAGE:
+NEWS1_CTA_PREFIX: Scan to read
+NEWS1_CTA:
+```
+
+- Use `NEWS1_ACTIVE: NO` to remove that story from the rotation.
+- `NEWS1_URL` creates the story’s QR code.
+- `NEWS1_IMAGE` accepts an approved repository image path or a stable public HTTPS image.
+- Keep summaries to two short sentences.
+- Scan every changed QR code from several feet away.
+
+The fifth story currently contains the October 14 “What Does True Justice Look Like?” event. Update or deactivate it after the event.
+
+## Project Rebound Justice Lab
+
+Editable fields include the headline, explanatory copy, three activity groups, CTA, contact, and link:
+
+```text
+JUSTICE_LAB_KICKER:
+JUSTICE_LAB_HEADLINE:
+JUSTICE_LAB_BODY:
+JUSTICE_LAB_ACTIVITY1_NAME:
+JUSTICE_LAB_ACTIVITY1_BODY:
+JUSTICE_LAB_ACTIVITY2_NAME:
+JUSTICE_LAB_ACTIVITY2_BODY:
+JUSTICE_LAB_ACTIVITY3_NAME:
+JUSTICE_LAB_ACTIVITY3_BODY:
+JUSTICE_LAB_JOIN_LABEL:
+JUSTICE_LAB_CTA:
+JUSTICE_LAB_CONTACT:
+JUSTICE_LAB_LINK_LABEL:
+JUSTICE_LAB_URL:
+```
+
+## Housing Initiative
+
+The housing page supports four editable assistance pathways:
+
+```text
+HOUSING_KICKER:
+HOUSING_HEADLINE:
+HOUSING_BODY:
+HOUSING_CTA_TITLE:
+HOUSING_CTA_BODY:
+HOUSING_CONTACT_HEADING:
+HOUSING_DISCLAIMER:
+
+HOUSING_SUPPORT1_LABEL:
+HOUSING_SUPPORT1_NAME:
+HOUSING_SUPPORT1_BODY:
+...
+HOUSING_SUPPORT4_LABEL:
+HOUSING_SUPPORT4_NAME:
+HOUSING_SUPPORT4_BODY:
+```
+
+Do not publish individual award amounts, student circumstances, or promises of assistance unless the wording has been approved.
 
 ## Prospective-student interest page
 
-These fields control the separate “Interested in Project Rebound?” screen:
-
 ```text
-INTEREST_KICKER: Take the first step
-INTEREST_HEADLINE: Interested in Project Rebound?
-INTEREST_BODY: Tell us about your educational goals.
-ELIGIBILITY_TEXT: Insert only eligibility language approved by Project Rebound leadership.
-INTEREST_CTA: Complete the interest form
-INTEREST_FORM_URL: https://your-approved-form-address
-INTEREST_DISCLAIMER: Submitting this form is not an admissions decision or a guarantee of program eligibility.
+INTEREST_KICKER:
+INTEREST_HEADLINE:
+INTEREST_BODY:
+ELIGIBILITY_TEXT:
+INTEREST_CTA:
+INTEREST_FORM_URL:
+INTEREST_DISCLAIMER:
 ```
 
-The current `INTEREST_FORM_URL` points to the existing Project Rebound student questionnaire. Replace the complete URL when an approved interest form changes.
-
-Do not invent or infer eligibility rules. Use only language approved by Project Rebound leadership. If criteria are under review, use a neutral direction to contact staff rather than publishing unconfirmed requirements.
+Use only eligibility language approved by Project Rebound leadership. If the URL is blank or invalid, the webpage hides the QR code and displays “Form link coming soon.”
 
 ## Volunteer page
 
-These fields control the separate volunteer screen:
-
 ```text
-VOLUNTEER_KICKER: Give your time · Share your strengths
-VOLUNTEER_HEADLINE: Volunteer with Project Rebound
-VOLUNTEER_BODY: Help strengthen a community where Rebound Scholars are seen, supported, and connected to opportunity.
-VOLUNTEER_AUDIENCE: CSUSB students, faculty, staff, alumni, community members, and approved partners are welcome to inquire.
-VOLUNTEER_CTA: Express your interest
+VOLUNTEER_KICKER:
+VOLUNTEER_HEADLINE:
+VOLUNTEER_BODY:
+VOLUNTEER_AUDIENCE:
+VOLUNTEER_ROLE1:
+...
+VOLUNTEER_ROLE6:
+VOLUNTEER_CTA:
 VOLUNTEER_FORM_URL:
-VOLUNTEER_DISCLAIMER: Submitting an interest form does not guarantee placement.
+VOLUNTEER_DISCLAIMER:
 ```
 
-Until an approved public volunteer form exists, leave `VOLUNTEER_FORM_URL` blank. The screen will show “Form link coming soon” and will not display a broken QR code.
+Leave `VOLUNTEER_FORM_URL` blank until an approved public form is ready. A submission does not guarantee placement.
 
-When the form is ready:
+## Center schedule, workshops, and ticker
 
-1. Paste the complete public HTTPS address after `VOLUNTEER_FORM_URL:`.
-2. Commit the change to `main`.
-3. Wait several minutes for GitHub Pages.
-4. Open the live display and scan the QR code with a phone that is not logged into a CSUSB administrator account.
-5. Confirm that the form opens for the intended public audience.
-
-## Verify either form QR code
-
-After changing a form URL:
-
-1. Open the live display.
-2. Navigate to the interest or volunteer screen using the dots or arrow keys.
-3. Scan the QR code from several feet away.
-4. Confirm that it opens the correct public form.
-5. Complete a test submission if appropriate.
-
-If a URL is blank or invalid, the webpage intentionally hides the QR code and button.
-
-## Weekly schedule and announcements
-
-Update the weekly heading and each date badge:
+For each schedule entry, update its short month, date, weekday, and description:
 
 ```text
-WEEK_RANGE: Week of August 17
-MON_MONTH: AUG
-MON_DATE: 17
-MON: Study hall · 10:00 a.m.–2:00 p.m.
+WEEK_RANGE:
+MON_MONTH:
+MON_DATE:
+MON_DAY:
+MON:
 ```
 
-Repeat the pattern for Tuesday, Wednesday, and Thursday. Keep descriptions short enough to read across the center.
+Repeat for `TUE`, `WED`, and `THU`. Reminders use `DEADLINE1` through `DEADLINE3`.
 
-Update reminders through `DEADLINE1`, `DEADLINE2`, and `DEADLINE3`. Update workshops through the `WS1`, `WS2`, and `WS3` fields.
+Workshops use:
+
+```text
+WS1_WHEN:
+WS1_NAME:
+WS1_NOTE:
+```
+
+Repeat for `WS2` and `WS3`.
+
+The bottom messages use `TICKER1` through `TICKER4`.
+
+## Display timing
+
+Timing is staff-editable in seconds:
+
+```text
+DEFAULT_SCREEN_SECONDS: 15
+GALLERY_SCREEN_SECONDS: 90
+GALLERY_PHOTO_SECONDS: 7
+STORY_SCREEN_SECONDS: 20
+TICKER_SECONDS: 7
+```
+
+Regular and story screens cannot be set below 10 seconds. Avoid making the gallery so long that other information disappears from view for several minutes.
 
 ## Outlook events
 
-The Upcoming Events screen reads the public Outlook calendar feed listed as `CALENDAR_ICS_URL`. Add or edit events in Outlook—not in `calendar-events.json`.
+The Upcoming Events screen is generated from the public Outlook calendar feed. Add or edit events in Outlook, not `calendar-events.json`.
 
-The GitHub workflow checks the Outlook feed and publishes up to eight upcoming events. The display checks the generated event data every five minutes. If events do not appear, open the repository’s **Actions** tab, select **Update public calendar events**, and confirm that the latest run has a green check.
+The GitHub workflow checks the public feed and publishes up to eight upcoming events. If an event does not appear:
+
+1. Confirm it was added to the correct public Project Rebound calendar.
+2. Open the repository’s **Actions** tab.
+3. Select **Update public calendar events**.
+4. Confirm the latest run has a green check.
+5. Refresh the display.
 
 ## Community Gallery photographs
 
-1. Open the repository’s `gallery` folder.
+1. Open the repository’s `gallery/` folder.
 2. Select **Add file → Upload files**.
-3. Upload approved JPG, JPEG, PNG, WebP, or GIF images.
-4. Commit directly to `main`.
+3. Upload an approved JPG, JPEG, PNG, WebP, or GIF.
+4. Commit to `main`.
 
-Use numbered, descriptive filenames:
+Use numbered descriptive filenames:
 
 ```text
 01-community-lunch.jpg
@@ -121,47 +275,37 @@ Use numbered, descriptive filenames:
 03-graduation-celebration.jpg
 ```
 
-The number controls the order. The remainder becomes the on-screen caption. Images rotate every six seconds and use `object-fit: contain`, so portrait and landscape photographs are not cropped.
+The number controls order. The rest becomes the caption. Portrait and landscape photos use `object-fit: contain` so the complete photograph remains visible.
 
-Obtain written permission before publicly displaying identifiable students. Never use student IDs, case information, supervision information, or other confidential details in filenames or captions.
-
-## Welcome and spotlight photographs
-
-Upload approved images to `images/`, then update:
-
-```text
-WELCOME_PHOTO: images/welcome-fall-2026.jpg
-SPOTLIGHT_PHOTO: images/student-name.jpg
-```
-
-Recommended images are at least 1600 × 1200 pixels. Use authentic approved Project Rebound photographs when available. The bundled stock images are placeholders and do not depict Project Rebound students.
+Obtain permission before publicly displaying identifiable students. Never include student IDs, case information, supervision status, or confidential details in filenames or captions.
 
 ## Music
 
-`MUSIC_VOLUME` accepts a number from `0.00` to `1.00`. The recommended center setting is `0.10`. Music shuffles continuously and does not restart when screens rotate. Raspberry Pi kiosk autoplay instructions are in `KIOSK-SETUP.md`.
+The current music source is a hidden YouTube Study Beats livestream. `MUSIC_LABEL` changes only the on-screen label. Raspberry Pi autoplay behavior is described in `KIOSK-SETUP.md`.
 
-## Preview all screens
+## Preview and verify
 
 Live display:
 
 https://mgriggs1989-web.github.io/project-rebound-center/
 
-After committing an update:
+After every update:
 
-1. Wait several minutes for GitHub Pages to deploy.
-2. Refresh the live display once.
-3. Use the navigation dots or arrow keys to review all 11 screens.
-4. Confirm that text fits, photographs are appropriate, and QR codes remain visible.
-5. Scan every changed QR code.
-6. Confirm that music continues while screens change.
+1. Wait for GitHub Pages to deploy.
+2. Refresh once.
+3. Use arrow keys or navigation dots to inspect every active screen.
+4. Confirm text does not clip at 1920 × 1080.
+5. Scan changed QR codes.
+6. Confirm the gallery shows complete photographs.
+7. Confirm pages, ticker, and gallery photos continue rotating.
+8. Confirm music continues during screen changes.
+9. Confirm no confidential information appears.
 
-## Project Rebound design rules
+## Project Rebound design and content rules
 
 - Use Coyote Blue, light blue, white, deep navy, and black.
-- Do not add gold, yellow, orange, AmeriCorps colors, or unrelated accent colors.
+- Do not add gold, yellow, orange, or unrelated accent colors.
 - Preserve the official Project Rebound logo and “Welcome home” identity.
-- Keep text concise, dignified, non-stigmatizing, and readable across a large room.
-- Do not copy AmeriCorps logos, illustrations, wording, or page designs.
+- Use dignified, non-stigmatizing, public-service language.
+- Keep text brief enough to read across a large room.
 - Display only approved public information.
-
-For design or functionality changes, contact the webpage maintainer rather than modifying `styles.css` or `app.js` during routine updates.
