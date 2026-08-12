@@ -1,4 +1,47 @@
 {
-  "generated_at": "2026-08-10T08:17:56.719687+00:00",
-  "events": []
+  "generated_at": "2026-08-12T06:23:14.749510+00:00",
+  "events": [
+    {
+      "title": "Fall 2026 Tuition and Fees Due",
+      "location": "CSUSB",
+      "start": "2026-08-13T00:00:00-07:00",
+      "end": "2026-08-14T00:00:00-07:00",
+      "all_day": true
+    },
+    {
+      "title": "Payment Plan and 100% Refund Deadlines",
+      "location": "CSUSB",
+      "start": "2026-08-21T00:00:00-07:00",
+      "end": "2026-08-22T00:00:00-07:00",
+      "all_day": true
+    },
+    {
+      "title": "Fall 2026 Term Begins",
+      "location": "CSUSB",
+      "start": "2026-08-22T00:00:00-07:00",
+      "end": "2026-08-23T00:00:00-07:00",
+      "all_day": true
+    },
+    {
+      "title": "Project Rebound Center Grand Opening",
+      "location": "SMSU South 116 \u00b7 Time to be announced",
+      "start": "2026-09-16T00:00:00-07:00",
+      "end": "2026-09-17T00:00:00-07:00",
+      "all_day": true
+    },
+    {
+      "title": "Fall 2026 Census \u2014 Finalize Your Schedule",
+      "location": "CSUSB",
+      "start": "2026-09-21T00:00:00-07:00",
+      "end": "2026-09-22T00:00:00-07:00",
+      "all_day": true
+    },
+    {
+      "title": "What Does True Justice Look Like?",
+      "location": "Zoom \u00b7 Scan the True Justice screen to register",
+      "start": "2026-10-14T12:00:00-07:00",
+      "end": "2026-10-14T13:00:00-07:00",
+      "all_day": false
+    }
+  ]
 }
