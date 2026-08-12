@@ -53,19 +53,58 @@ def parse_events(text):
                 current["location"] = clean(value)
     return events
 
-def main():
-    request = urllib.request.Request(content_value("CALENDAR_ICS_URL"), headers={"User-Agent": "Project-Rebound-Display/1.0"})
-    with urllib.request.urlopen(request, timeout=45) as response:
-        raw = response.read().decode("utf-8-sig")
-    now = datetime.now(timezone.utc)
-    output = []
-    for event in parse_events(raw):
-        start = event["start"]
-        end = event.get("end", start + (timedelta(days=1) if event.get("all_day") else timedelta(hours=1)))
+def display_event(event, now):
+    start = event["start"]
+    end = event.get("end", start + (timedelta(days=1) if event.get("all_day") else timedelta(hours=1)))
+    if end.astimezone(timezone.utc) < now:
+        return None
+    return {
+        "title": event.get("title", "Project Rebound event"),
+        "location": event.get("location", ""),
+        "start": start.isoformat(),
+        "end": end.isoformat(),
+        "all_day": bool(event.get("all_day")),
+    }
+
+def load_priority_events(now):
+    path = ROOT / "priority-events.json"
+    if not path.exists():
+        return []
+    events = []
+    for item in json.loads(path.read_text()).get("events", []):
+        start = datetime.fromisoformat(item["start"])
+        end = datetime.fromisoformat(item["end"])
         if end.astimezone(timezone.utc) < now:
             continue
-        output.append({"title": event.get("title", "Project Rebound event"), "location": event.get("location", ""), "start": start.isoformat(), "end": end.isoformat(), "all_day": bool(event.get("all_day"))})
-    output.sort(key=lambda item: item["start"])
+        events.append({
+            "title": item["title"],
+            "location": item.get("location", ""),
+            "start": start.isoformat(),
+            "end": end.isoformat(),
+            "all_day": bool(item.get("all_day")),
+        })
+    return events
+
+def event_key(event):
+    title = re.sub(r"\W+", " ", event["title"].lower()).strip()
+    return title, event["start"][:10]
+
+def main():
+    now = datetime.now(timezone.utc)
+    live_events = []
+    try:
+        request = urllib.request.Request(content_value("CALENDAR_ICS_URL"), headers={"User-Agent": "Project-Rebound-Display/1.0"})
+        with urllib.request.urlopen(request, timeout=45) as response:
+            raw = response.read().decode("utf-8-sig")
+        live_events = [display_event(event, now) for event in parse_events(raw)]
+        live_events = [event for event in live_events if event]
+    except Exception as error:
+        print(f"Outlook calendar unavailable; using verified priority events: {error}")
+
+    merged = {event_key(event): event for event in load_priority_events(now)}
+    for event in live_events:
+        merged[event_key(event)] = event
+    output = sorted(merged.values(), key=lambda item: item["start"])
     event_file = ROOT / "calendar-events.json"
     upcoming = output[:8]
     if event_file.exists():
