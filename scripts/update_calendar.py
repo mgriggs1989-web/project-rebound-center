@@ -2,6 +2,7 @@
 import json
 import re
 import urllib.request
+from difflib import SequenceMatcher
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -89,6 +90,17 @@ def event_key(event):
     title = re.sub(r"\W+", " ", event["title"].lower()).strip()
     return title, event["start"][:10]
 
+def same_event(left, right):
+    left_title, left_date = event_key(left)
+    right_title, right_date = event_key(right)
+    if left_date != right_date:
+        return False
+    return (
+        left_title in right_title
+        or right_title in left_title
+        or SequenceMatcher(None, left_title, right_title).ratio() >= 0.72
+    )
+
 def main():
     now = datetime.now(timezone.utc)
     live_events = []
@@ -101,10 +113,11 @@ def main():
     except Exception as error:
         print(f"Outlook calendar unavailable; using verified priority events: {error}")
 
-    merged = {event_key(event): event for event in load_priority_events(now)}
+    merged = load_priority_events(now)
     for event in live_events:
-        merged[event_key(event)] = event
-    output = sorted(merged.values(), key=lambda item: item["start"])
+        merged = [fallback for fallback in merged if not same_event(fallback, event)]
+        merged.append(event)
+    output = sorted(merged, key=lambda item: item["start"])
     event_file = ROOT / "calendar-events.json"
     upcoming = output[:8]
     if event_file.exists():
