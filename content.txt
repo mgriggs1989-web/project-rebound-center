@@ -232,17 +232,17 @@ NEWS4_CTA_PREFIX: Scan to read
 NEWS4_CTA: Michael’s story
 
 NEWS5_ACTIVE: YES
-NEWS5_KICKER: Project Rebound in the news
-NEWS5_SECTION_HEADLINE: Read the latest feature
-NEWS5_SECTION_MESSAGE: Follow Project Rebound’s growing public impact and community partnerships.
-NEWS5_INITIALS: PR
-NEWS5_TAG: CSUSB · Community · Opportunity
-NEWS5_HEADLINE: Project Rebound in the news
-NEWS5_SUMMARY: Read this CSUSB feature highlighting Project Rebound’s work, public service, and expanding community impact.
+NEWS5_KICKER: Accountability · Healing · Second chances
+NEWS5_SECTION_HEADLINE: What does true justice look like?
+NEWS5_SECTION_MESSAGE: Join a candid conversation about harm, responsibility, healing, redemption, and the meaning of justice.
+NEWS5_INITIALS: RJ
+NEWS5_TAG: Conversation on Race and Policing
+NEWS5_HEADLINE: Accountability and redemption can coexist
+NEWS5_SUMMARY: Gunner Johnson and Brett May explore what accountability asks of a person and how people can move toward healing. October 14, 2026 · 12–1 p.m. · Live on Zoom.
 NEWS5_URL: https://www.csusb.edu/event/597341
-NEWS5_IMAGE: images/project-rebound-logo.svg
-NEWS5_CTA_PREFIX: Scan to read
-NEWS5_CTA: CSUSB feature
+NEWS5_IMAGE: https://www.csusb.edu/sites/default/files/upload/image/2026/Screenshot%202026-08-04%20at%206.25.34%E2%80%AFPM.png
+NEWS5_CTA_PREFIX: Scan for details
+NEWS5_CTA: Read and register
 
 # ============================================================
 # CENTER SCHEDULE
