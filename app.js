@@ -107,9 +107,15 @@ function loadGallery(){
       const current=galleryPhotos[galleryIndex]?.name;
       galleryPhotos=photos;
       const preserved=galleryPhotos.findIndex(photo=>photo.name===current);
+      const gallerySlide=document.querySelector('.screen-gallery');
+      if(gallerySlide){
+        const fullGalleryMs=(galleryPhotos.length*displaySettings.galleryPhotoMs)+3000;
+        gallerySlide.dataset.duration=String(Math.max(displaySettings.galleryScreenMs,fullGalleryMs));
+      }
       galleryBusy=false;
       showGalleryPhoto(preserved>-1?preserved:0);
       restartGalleryTimer();
+      window.PR?.refresh?.();
     })
     .catch(()=>{if(!galleryPhotos.length)galleryCount.textContent='Gallery temporarily unavailable'});
 }
