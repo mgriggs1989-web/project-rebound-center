@@ -39,11 +39,80 @@ function loadCalendarEvents(){fetch('calendar-events.json?v='+Date.now(),{cache:
 loadCalendarEvents();setInterval(loadCalendarEvents,5*60*1000);
 
 const GALLERY_API='https://api.github.com/repos/mgriggs1989-web/project-rebound-center/contents/gallery?ref=main';
-const galleryImage=document.getElementById('galleryImage'),galleryEmpty=document.getElementById('galleryEmpty'),galleryCaption=document.getElementById('galleryCaption'),galleryCount=document.getElementById('galleryCount');let galleryPhotos=[],galleryIndex=0,galleryTimer;
-function restartGalleryTimer(){clearInterval(galleryTimer);if(galleryPhotos.length>1)galleryTimer=setInterval(()=>showGalleryPhoto(galleryIndex+1),displaySettings.galleryPhotoMs)}
-function galleryTitle(name){return decodeURIComponent(name).replace(/\.[^.]+$/,'').replace(/^\d+[\s_-]*/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim()||'Project Rebound community'}
-function showGalleryPhoto(index){if(!galleryPhotos.length)return;galleryIndex=(index+galleryPhotos.length)%galleryPhotos.length;const photo=galleryPhotos[galleryIndex];galleryImage.classList.add('changing');setTimeout(()=>{galleryImage.onload=()=>galleryImage.classList.remove('changing');galleryImage.src=photo.download_url;galleryImage.alt=galleryTitle(photo.name);galleryImage.closest('.gallery-frame')?.style.setProperty('--gallery-backdrop','url("'+photo.download_url.replace(/"/g,'%22')+'")');galleryImage.hidden=false;galleryEmpty.hidden=true;galleryCaption.textContent=galleryTitle(photo.name);galleryCaption.hidden=false;galleryCount.textContent=(galleryIndex+1)+' of '+galleryPhotos.length+' photos'},200)}
-function loadGallery(){fetch(GALLERY_API,{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.ok?r.json():Promise.reject()).then(items=>{const photos=Array.isArray(items)?items.filter(item=>item.type==='file'&&/\.(jpe?g|png|webp|gif)$/i.test(item.name)&&item.download_url).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})):[];if(!photos.length){galleryPhotos=[];galleryImage.hidden=true;galleryCaption.hidden=true;galleryEmpty.hidden=false;galleryCount.textContent='No photos uploaded yet';return}const current=galleryPhotos[galleryIndex]?.name;galleryPhotos=photos;const preserved=galleryPhotos.findIndex(photo=>photo.name===current);showGalleryPhoto(preserved>-1?preserved:0);restartGalleryTimer()}).catch(()=>{if(!galleryPhotos.length)galleryCount.textContent='Gallery temporarily unavailable'})}
+const galleryImage=document.getElementById('galleryImage'),galleryEmpty=document.getElementById('galleryEmpty'),galleryCaption=document.getElementById('galleryCaption'),galleryCount=document.getElementById('galleryCount');
+let galleryPhotos=[],galleryIndex=0,galleryTimer=null,galleryLoadToken=0,galleryBusy=false;
+
+function restartGalleryTimer(){
+  clearInterval(galleryTimer);
+  if(galleryPhotos.length>1)galleryTimer=setInterval(()=>{
+    if(!galleryBusy)showGalleryPhoto(galleryIndex+1);
+  },displaySettings.galleryPhotoMs);
+}
+function galleryTitle(name){
+  return decodeURIComponent(name).replace(/\.[^.]+$/,'').replace(/^\d+[\s_-]*/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim()||'Project Rebound community';
+}
+function preloadGalleryPhoto(photo){
+  return new Promise((resolve,reject)=>{
+    const loader=new Image();
+    const timeout=setTimeout(()=>{loader.onload=loader.onerror=null;reject(new Error('Image timed out'))},20000);
+    loader.onload=()=>{clearTimeout(timeout);resolve(loader)};
+    loader.onerror=()=>{clearTimeout(timeout);reject(new Error('Image failed to load'))};
+    loader.decoding='async';
+    loader.src=photo.download_url;
+  });
+}
+async function showGalleryPhoto(index,attempt=0){
+  if(!galleryPhotos.length||galleryBusy)return;
+  const target=(index+galleryPhotos.length)%galleryPhotos.length;
+  const photo=galleryPhotos[target];
+  const token=++galleryLoadToken;
+  galleryBusy=true;
+  galleryImage.classList.add('changing');
+  try{
+    const loaded=await preloadGalleryPhoto(photo);
+    if(token!==galleryLoadToken)return;
+    galleryImage.src=loaded.src;
+    galleryImage.alt=galleryTitle(photo.name);
+    galleryImage.hidden=false;
+    galleryEmpty.hidden=true;
+    galleryCaption.textContent=galleryTitle(photo.name);
+    galleryCaption.hidden=false;
+    galleryIndex=target;
+    galleryCount.textContent=(galleryIndex+1)+' of '+galleryPhotos.length+' photos';
+    galleryImage.classList.toggle('portrait',loaded.naturalHeight>loaded.naturalWidth);
+    galleryImage.classList.toggle('landscape',loaded.naturalWidth>=loaded.naturalHeight);
+    galleryImage.classList.remove('changing');
+    const next=galleryPhotos[(galleryIndex+1)%galleryPhotos.length];
+    if(next){const warm=new Image();warm.src=next.download_url}
+  }catch(error){
+    if(token!==galleryLoadToken)return;
+    galleryImage.classList.remove('changing');
+    if(attempt<galleryPhotos.length-1){
+      galleryBusy=false;
+      return showGalleryPhoto(target+1,attempt+1);
+    }
+    galleryCount.textContent='Gallery image temporarily unavailable';
+  }finally{
+    if(token===galleryLoadToken)galleryBusy=false;
+  }
+}
+function loadGallery(){
+  fetch(GALLERY_API,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}})
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(items=>{
+      const photos=Array.isArray(items)?items.filter(item=>item.type==='file'&&/\.(jpe?g|png|webp|gif)$/i.test(item.name)&&item.download_url).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})):[];
+      if(!photos.length){
+        galleryPhotos=[];galleryImage.hidden=true;galleryCaption.hidden=true;galleryEmpty.hidden=false;galleryCount.textContent='No photos uploaded yet';return;
+      }
+      const current=galleryPhotos[galleryIndex]?.name;
+      galleryPhotos=photos;
+      const preserved=galleryPhotos.findIndex(photo=>photo.name===current);
+      galleryBusy=false;
+      showGalleryPhoto(preserved>-1?preserved:0);
+      restartGalleryTimer();
+    })
+    .catch(()=>{if(!galleryPhotos.length)galleryCount.textContent='Gallery temporarily unavailable'});
+}
 loadGallery();setInterval(loadGallery,5*60*1000);
 
 const studyBeatsPlayer=document.getElementById('studyBeatsPlayer'),musicToggle=document.getElementById('musicToggle'),musicNowPlaying=document.getElementById('musicNowPlaying');
