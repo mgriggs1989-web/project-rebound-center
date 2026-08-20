@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Project Rebound Dual Display</title>
+  <style>
+    @font-face {
+      font-family: "Cloister Black";
+      src: url("fonts/CloisterBlack.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #111111;
+      --muted: #555555;
+      --season: #d98c52;
+      --season-soft: rgba(217, 140, 82, .20);
+      --season-faint: rgba(217, 140, 82, .09);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #fff;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .display {
+      position: relative;
+      isolation: isolate;
+      width: 100vw;
+      height: 100vh;
+      min-height: 540px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 43%, var(--season-faint), transparent 32%), #fff;
+    }
+
+    .theme-spring { --season: #65b77d; --season-soft: rgba(101, 183, 125, .22); --season-faint: rgba(101, 183, 125, .10); }
+    .theme-summer { --season: #268eb8; --season-soft: rgba(38, 142, 184, .22); --season-faint: rgba(38, 142, 184, .10); }
+    .theme-fall { --season: #d07836; --season-soft: rgba(208, 120, 54, .20); --season-faint: rgba(208, 120, 54, .09); }
+    .theme-winter { --season: #79b5d8; --season-soft: rgba(121, 181, 216, .20); --season-faint: rgba(121, 181, 216, .10); }
+
+    .screen-left { background: radial-gradient(circle at 100% 42%, var(--season-faint), transparent 42%), #fff; }
+    .screen-right { background: radial-gradient(circle at 0% 42%, var(--season-faint), transparent 42%), #fff; }
+
+    .display::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      z-index: 4;
+      border: 1px solid rgba(0, 0, 0, .18);
+      box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .78);
+      pointer-events: none;
+    }
+
+    .display::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: .24;
+      background-image: linear-gradient(rgba(0, 0, 0, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, .035) 1px, transparent 1px);
+      background-size: 90px 90px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 24%, #000 76%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 24%, #000 76%, transparent);
+    }
+
+    .ambient { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+    .orb { position: absolute; width: 32vw; aspect-ratio: 1; border: 1px solid var(--season-soft); border-radius: 50%; }
+    .orb::before, .orb::after { content: ""; position: absolute; border: 1px solid var(--season-soft); border-radius: inherit; }
+    .orb::before { inset: 11%; }
+    .orb::after { inset: 23%; }
+    .orb-one { left: -12vw; bottom: -20vw; }
+    .orb-two { right: -12vw; top: -20vw; }
+
+    .monitor { position: absolute; top: 0; bottom: 0; width: 50%; z-index: 0; }
+    .left-monitor { left: 0; }
+    .right-monitor { right: 0; }
+    .monitor::after {
+      content: "";
+      position: absolute;
+      bottom: -11vh;
+      width: 68vw;
+      height: 36vh;
+      background: #f6f6f4;
+      border-top: 2px solid var(--season-soft);
+      transform: skewY(-5deg);
+    }
+    .left-monitor::after { left: -8vw; }
+    .right-monitor::after { right: -8vw; transform: skewY(5deg); }
+
+    .screen-seam {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      z-index: 5;
+      background: linear-gradient(transparent 3%, rgba(0, 0, 0, .2) 15%, rgba(0, 0, 0, .35) 85%, transparent 97%);
+      box-shadow: -8px 0 20px rgba(0, 0, 0, .05), 8px 0 20px rgba(0, 0, 0, .05);
+      pointer-events: none;
+    }
+    .screen-seam span { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; border: 1px solid var(--season); background: #fff; transform: translate(-50%, -50%) rotate(45deg); }
+
+    .topbar,
+    footer {
+      position: absolute;
+      left: clamp(48px, 4vw, 120px);
+      right: clamp(48px, 4vw, 120px);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar { top: clamp(44px, 5vh, 86px); }
+    .campus-lockup { display: flex; align-items: center; }
+    .csusb-nameplate { display: block; width: clamp(270px, 22vw, 560px); height: auto; object-fit: contain; }
+    .topbar time { display: grid; justify-items: end; gap: 3px; }
+    .topbar time strong { color: var(--ink); font-size: clamp(19px, 1.5vw, 34px); font-weight: 500; letter-spacing: -.03em; }
+    .topbar time span { color: var(--muted); font-size: clamp(10px, .7vw, 16px); letter-spacing: .08em; text-transform: uppercase; }
+
+    .hero {
+      position: absolute;
+      inset: 15% 0 17%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .eyebrow { margin: 0 0 1.8vh; color: var(--season); font-size: clamp(12px, .9vw, 23px); font-weight: 600; letter-spacing: .46em; text-transform: uppercase; }
+    h1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: baseline;
+      width: 100%;
+      margin: 0;
+      color: var(--ink);
+      font: 400 clamp(104px, 13vw, 920px)/.82 "Cloister Black", "Old English Text MT", Georgia, serif;
+      letter-spacing: .005em;
+      text-shadow: 0 2px 0 rgba(255, 255, 255, .92), 0 0 42px rgba(255, 255, 255, .95), 0 3px 0 rgba(0, 0, 0, .08);
+    }
+    h1 span:first-child { padding-right: .8vw; text-align: right; }
+    h1 span:last-child { padding-left: .8vw; text-align: left; }
+    .word-project { transform: scaleX(1.23); transform-origin: right center; }
+
+    .screen-left .screen-seam,
+    .screen-right .screen-seam { display: none; }
+    .screen-left .hero,
+    .screen-right .hero { inset: 14% 1% 17%; }
+    .screen-left h1,
+    .screen-right h1 { display: block; font-size: clamp(180px, 26vw, 920px); line-height: .82; text-align: center; }
+    .screen-left .word-project,
+    .screen-right .word-rebound { display: block; padding: 0 !important; text-align: center !important; transform-origin: center; }
+    .screen-left .word-rebound,
+    .screen-right .word-project { display: none; }
+    .screen-left .topbar time,
+    .screen-left .continuation,
+    .screen-right .campus-lockup,
+    .screen-right .welcome { display: none; }
+    .screen-right .topbar,
+    .screen-right footer { justify-content: flex-end; }
+    .screen-left .orb-two,
+    .screen-right .orb-one { display: none; }
+
+    .hero-rule { display: grid; grid-template-columns: minmax(100px, 22vw) auto minmax(100px, 22vw); align-items: center; gap: 20px; margin-top: 3.5vh; color: var(--season); }
+    .hero-rule span { display: block; height: 1px; background: linear-gradient(90deg, transparent, var(--season)); }
+    .hero-rule span:last-child { background: linear-gradient(90deg, var(--season), transparent); }
+    .hero-rule b { font-size: 14px; font-weight: 400; }
+    .season-note { margin: 2.5vh 0 0; color: rgba(0, 0, 0, .62); font: italic clamp(17px, 1.35vw, 34px)/1.2 Georgia, serif; letter-spacing: .03em; }
+
+    footer { bottom: clamp(44px, 5vh, 86px); }
+    .welcome { display: flex; align-items: center; gap: 16px; }
+    .welcome-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--season); box-shadow: 0 0 22px var(--season); }
+    .welcome div, .continuation { display: grid; gap: 4px; }
+    .continuation { justify-items: end; }
+    .welcome small, .continuation small { color: var(--season); font-size: clamp(9px, .62vw, 14px); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .welcome strong, .continuation strong { color: var(--ink); font: italic clamp(16px, 1.15vw, 28px)/1 Georgia, serif; font-weight: 400; }
+
+    .season-particles i {
+      position: absolute;
+      left: calc(var(--i) * 5.5%);
+      top: calc(-8% - (var(--i) % 5) * 12%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--season);
+      opacity: .28;
+      animation: drift calc(13s + (var(--i) % 7) * 1.4s) linear infinite;
+      animation-delay: calc(var(--i) * -1.3s);
+    }
+    .theme-fall .season-particles i { width: 9px; height: 6px; border-radius: 80% 10% 80% 10%; transform: rotate(35deg); }
+    .theme-spring .season-particles i { width: 8px; height: 5px; border-radius: 70% 20% 70% 20%; }
+    .theme-summer .season-particles i { opacity: .16; box-shadow: 0 0 18px var(--season); }
+    .theme-winter .season-particles i { width: 5px; height: 5px; opacity: .5; }
+
+    .fall-stock { display: none; position: absolute; inset: 0; overflow: hidden; }
+    .theme-fall .fall-stock { display: block; }
+    .fall-photo { position: absolute; margin: 0; overflow: hidden; background: #fff; border: clamp(6px, .5vw, 14px) solid rgba(255, 255, 255, .96); box-shadow: 0 28px 70px rgba(53, 29, 12, .2), 0 0 0 1px rgba(92, 43, 16, .12); }
+    .fall-photo::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
+    .fall-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .photo-leaves { left: -3vw; bottom: -5vh; width: 31vw; height: 60vh; transform: rotate(-2deg); border-radius: 0 30% 10% 0 / 0 18% 10% 0; }
+    .photo-leaves img { object-position: 58% center; }
+    .photo-pumpkins { right: -3vw; top: -5vh; width: 34vw; height: 58vh; transform: rotate(2deg); border-radius: 0 0 0 30% / 0 0 0 18%; }
+    .screen-left .photo-pumpkins,
+    .screen-right .photo-leaves { display: none; }
+    .screen-left .photo-leaves { left: -2vw; bottom: -6vh; width: 40vw; height: 64vh; }
+    .screen-right .photo-pumpkins { right: -2vw; top: -6vh; width: 42vw; height: 62vh; }
+
+    @keyframes drift {
+      from { translate: 0 -10vh; rotate: 0deg; }
+      to { translate: calc((var(--i) - 9) * 1.8vw) 125vh; rotate: 420deg; }
+    }
+
+    @media (max-aspect-ratio: 2/1) {
+      .hero { inset-inline: 1%; }
+      h1 { font-size: clamp(92px, 14vw, 190px); }
+      .topbar, footer { left: 36px; right: 36px; }
+    }
+
+    @media (max-width: 850px) {
+      .csusb-nameplate { width: clamp(230px, 44vw, 360px); }
+      .topbar time span { display: none; }
+      h1 { display: flex; flex-direction: column; align-items: center; line-height: .78; }
+      h1 span:first-child, h1 span:last-child { padding: 0; text-align: center; }
+      .screen-seam { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { .season-particles { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="display theme-fall screen-preview" id="display">
+    <div class="ambient" aria-hidden="true">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="season-particles" id="particles"></div>
+      <div class="fall-stock">
+        <figure class="fall-photo photo-leaves"><img src="assets/fall-maple-leaves.jpg" alt=""></figure>
+        <figure class="fall-photo photo-pumpkins"><img src="assets/fall-pumpkins.webp" alt=""></figure>
+      </div>
+    </div>
+
+    <div class="monitor left-monitor" aria-hidden="true"></div>
+    <div class="monitor right-monitor" aria-hidden="true"></div>
+    <div class="screen-seam" aria-hidden="true"><span></span></div>
+
+    <header class="topbar">
+      <div class="campus-lockup">
+        <img class="csusb-nameplate" src="assets/csusb-nameplate.png" alt="California State University, San Bernardino">
+      </div>
+      <time id="clock"><strong id="time"></strong><span id="date"></span></time>
+    </header>
+
+    <section class="hero" aria-labelledby="main-title">
+      <p class="eyebrow" id="eyebrow">Learning · Belonging · Transformation</p>
+      <h1 id="main-title" aria-label="Project Rebound">
+        <span class="word-project">Project</span>
+        <span class="word-rebound">Rebound</span>
+      </h1>
+      <div class="hero-rule" aria-hidden="true"><span></span><b>◆</b><span></span></div>
+      <p class="season-note" id="season-note">Education opens the next chapter.</p>
+    </section>
+
+    <footer>
+      <div class="welcome"><span class="welcome-dot"></span><div><small>Welcome home</small><strong>Education changes everything.</strong></div></div>
+      <div class="continuation"><small>Project Rebound</small><strong>Your story continues here.</strong></div>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const display = document.getElementById("display");
+      const eyebrow = document.getElementById("eyebrow");
+      const seasonNote = document.getElementById("season-note");
+      const time = document.getElementById("time");
+      const date = document.getElementById("date");
+      const screen = new URLSearchParams(location.search).get("screen");
+      const mode = screen === "left" || screen === "right" ? screen : "preview";
+      const seasonalCopy = {
+        spring: ["New growth · New possibilities", "A season to begin again."],
+        summer: ["Community · Purpose · Possibility", "Our future is bright."],
+        fall: ["Learning · Belonging · Transformation", "Education opens the next chapter."],
+        winter: ["Strength · Reflection · Renewal", "We rise together."]
+      };
+
+      for (let i = 0; i < 18; i += 1) {
+        const particle = document.createElement("i");
+        particle.style.setProperty("--i", i);
+        document.getElementById("particles").appendChild(particle);
+      }
+
+      function currentSeason(now) {
+        const month = now.getMonth();
+        if (month >= 1 && month <= 4) return "spring";
+        if (month >= 5 && month <= 6) return "summer";
+        if (month >= 7 && month <= 10) return "fall";
+        return "winter";
+      }
+
+      function update() {
+        const now = new Date();
+        const season = currentSeason(now);
+        display.className = `display theme-${season} screen-${mode}`;
+        eyebrow.textContent = mode === "left"
+          ? "Education · Community"
+          : mode === "right"
+            ? "Transformation · Possibility"
+            : seasonalCopy[season][0];
+        seasonNote.textContent = seasonalCopy[season][1];
+        time.textContent = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+        date.textContent = now.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" });
+        document.getElementById("clock").dateTime = now.toISOString();
+      }
+
+      update();
+      setInterval(update, 30000);
+    })();
+  </script>
+</body>
+</html>
