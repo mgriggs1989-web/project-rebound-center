@@ -167,4 +167,7 @@ const PR=(()=>{
   return{go,refresh};
 })();
 window.PR=PR;
+// Kiosk safeguard: periodically reload the document so deployed code and styles cannot remain stale.
+const DISPLAY_AUTO_RELOAD_MS=30*60*1000;
+setTimeout(()=>window.location.reload(),DISPLAY_AUTO_RELOAD_MS);
 (function clock(){function tick(){const n=new Date();document.getElementById('clockTime').textContent=n.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});document.getElementById('clockDate').textContent=n.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'})}tick();setInterval(tick,15000)})();
