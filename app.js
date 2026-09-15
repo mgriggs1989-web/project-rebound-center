@@ -39,6 +39,8 @@ function loadCalendarEvents(){fetch('calendar-events.json?v='+Date.now(),{cache:
 loadCalendarEvents();setInterval(loadCalendarEvents,5*60*1000);
 
 const GALLERY_API='https://api.github.com/repos/mgriggs1989-web/project-rebound-center/contents/gallery?ref=main';
+// These repository copies are truncated and remain excluded until their originals are re-uploaded.
+const GALLERY_EXCLUDED=new Set(['community-garden-in-action.jpeg','community-garden-service.jpeg','team-building-paintball.jpeg']);
 const galleryImage=document.getElementById('galleryImage'),galleryEmpty=document.getElementById('galleryEmpty'),galleryCaption=document.getElementById('galleryCaption'),galleryCount=document.getElementById('galleryCount');
 let galleryPhotos=[],galleryIndex=0,galleryTimer=null,galleryLoadToken=0,galleryBusy=false;
 
@@ -100,7 +102,7 @@ function loadGallery(){
   fetch(GALLERY_API,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}})
     .then(r=>r.ok?r.json():Promise.reject())
     .then(items=>{
-      const photos=Array.isArray(items)?items.filter(item=>item.type==='file'&&/\.(jpe?g|png|webp|gif)$/i.test(item.name)&&item.download_url).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})):[];
+      const photos=Array.isArray(items)?items.filter(item=>item.type==='file'&&/\.(jpe?g|png|webp|gif)$/i.test(item.name)&&item.download_url&&!GALLERY_EXCLUDED.has(item.name)).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})):[];
       if(!photos.length){
         galleryPhotos=[];galleryImage.hidden=true;galleryCaption.hidden=true;galleryEmpty.hidden=false;galleryCount.textContent='No photos uploaded yet';return;
       }
