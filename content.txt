@@ -42,21 +42,21 @@ ALERT_EXPIRES: See Project Rebound staff for details
 # ============================================================
 # COVER PAGE
 # ============================================================
-COVER_KICKER: Education · Community · Possibility
-COVER_HEADLINE: Your story
-COVER_HEADLINE_ACCENT: continues here.
-COVER_QUOTE: Where lived experience becomes strength and education creates opportunity.
-COVER_WELCOME: Welcome to a community built on dignity, shared purpose, and the belief that your future is yours to shape.
+COVER_KICKER: PROJECT REBOUND CENTER · GRAND OPENING
+COVER_HEADLINE: Celebrating a
+COVER_HEADLINE_ACCENT: new chapter.
+COVER_QUOTE: September 16, 2026
+COVER_WELCOME: Thank you for celebrating this milestone with our students, alumni, campus partners, and community.
 COVER_LOGO: images/project-rebound-logo.svg
 
 # ============================================================
 # WELCOME AND BELONGING PAGE
 # ============================================================
-WELCOME_KICKER: You are in the right place
-WELCOME_HEADLINE: Come in.
-WELCOME_HEADLINE_ACCENT: You belong here.
-WELCOME_BODY: Project Rebound opens the door to a CSUSB degree for people with justice system involvement—from application through graduation and beyond.
-WELCOME_MISSION: Education changes everything
+WELCOME_KICKER: Grand Opening · September 16, 2026
+WELCOME_HEADLINE: Welcome.
+WELCOME_HEADLINE_ACCENT: This space is yours.
+WELCOME_BODY: Today we celebrate a new home for Project Rebound—a place for education, belonging, opportunity, and community.
+WELCOME_MISSION: Thank you for being part of our community
 WELCOME_PHOTO: images/welcome-met-community.jpg
 
 # ============================================================
@@ -297,7 +297,7 @@ WS3_NOTE: Plan your next academic step with support from our team.
 # ============================================================
 # BOTTOM TICKER
 # ============================================================
-TICKER1: Growth. Resilience. Achievement. Building futures together.
-TICKER2: Save the date: Project Rebound Center Grand Opening · September 16 · SMSU South 116.
-TICKER3: Fall tuition and fees are due August 13. Ask staff if you need help reviewing your account.
-TICKER4: September 21 is Fall Census—finalize your course schedule before the deadline.
+TICKER1: Welcome to the Project Rebound Center Grand Opening · September 16, 2026.
+TICKER2: Celebrating a new chapter for Rebound Scholars at CSUSB.
+TICKER3: Thank you to our students, alumni, campus partners, and community.
+TICKER4: Project Rebound · Education · Belonging · Opportunity · Transformation.
