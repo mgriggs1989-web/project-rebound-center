@@ -209,16 +209,16 @@
 
     .fall-stock { display: none; position: absolute; inset: 0; overflow: hidden; }
     .theme-fall .fall-stock { display: block; }
-    .fall-photo { position: absolute; margin: 0; overflow: hidden; background: #fff; border: clamp(6px, .5vw, 14px) solid rgba(255, 255, 255, .96); box-shadow: 0 28px 70px rgba(53, 29, 12, .2), 0 0 0 1px rgba(92, 43, 16, .12); }
-    .fall-photo::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
-    .fall-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .photo-leaves { left: -3vw; bottom: -5vh; width: 31vw; height: 60vh; transform: rotate(-2deg); border-radius: 0 30% 10% 0 / 0 18% 10% 0; }
-    .photo-leaves img { object-position: 54% center; filter: saturate(.94) contrast(1.03); }
-    .photo-pumpkins { right: -3vw; top: -5vh; width: 34vw; height: 58vh; transform: rotate(2deg); border-radius: 0 0 0 30% / 0 0 0 18%; }\n    .photo-pumpkins img { object-position: 52% center; filter: saturate(.88) contrast(1.04); }
+    .fall-photo { position: absolute; margin: 0; overflow: visible; background: transparent; border: 0; box-shadow: none; }
+    .fall-photo::after { display: none; }
+    .fall-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .photo-leaves { left: 1vw; bottom: 2vh; width: 18vw; height: 46vh; transform: none; border-radius: 0; }
+    .photo-leaves img { object-position: center; filter: none; }
+    .photo-pumpkins { right: 1vw; top: 2vh; width: 16vw; height: 44vh; transform: none; border-radius: 0; }\n    .photo-pumpkins img { object-position: center; filter: none; }
     .screen-left .photo-pumpkins,
     .screen-right .photo-leaves { display: none; }
-    .screen-left .photo-leaves { left: -2vw; bottom: -6vh; width: 40vw; height: 64vh; }
-    .screen-right .photo-pumpkins { right: -2vw; top: -6vh; width: 42vw; height: 62vh; }
+    .screen-left .photo-leaves { left: 2vw; bottom: 2vh; width: 22vw; height: 48vh; }
+    .screen-right .photo-pumpkins { right: 2vw; top: 2vh; width: 20vw; height: 48vh; }
 
     @keyframes drift {
       from { translate: 0 -10vh; rotate: 0deg; }
@@ -249,8 +249,8 @@
       <div class="orb orb-two"></div>
       <div class="season-particles" id="particles"></div>
       <div class="fall-stock">
-        <figure class="fall-photo photo-leaves"><img src="https://images.pexels.com/photos/1048032/pexels-photo-1048032.jpeg?auto=compress&cs=tinysrgb&w=1800" alt=""></figure>
-        <figure class="fall-photo photo-pumpkins"><img src="https://images.pexels.com/photos/9764795/pexels-photo-9764795.jpeg?auto=compress&cs=tinysrgb&w=1800" alt=""></figure>
+        <figure class="fall-photo photo-leaves"><img src="assets/halloween-pumpkin.png" alt=""></figure>
+        <figure class="fall-photo photo-pumpkins"><img src="assets/halloween-ghost.png" alt=""></figure>
       </div>
     </div>
 
